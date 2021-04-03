@@ -2,6 +2,7 @@ import React from 'react';
 import { StyleSheet, View, Text } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import OtherItemCard from '../components/OtherItemCard';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function OtherPage() {
   return (
@@ -9,23 +10,49 @@ export default function OtherPage() {
       <View style={styles.header}>
         <Text style={styles.headerText}>Other</Text>
       </View>
+      <Ionicons
+        style={styles.headerIcons}
+        name={'settings-outline'}
+        color={'grey'}
+        size={20}
+      />
       <ScrollView style={styles.mainContainer}>
         <View>
           <Text style={styles.subHeader}>서비스</Text>
         </View>
         <OtherItemCard subHeader={'리워드'} icon={'star-outline'} />
+        <OtherItemCard subHeader={'쿠폰'} icon={'cash-outline'} />
+        <OtherItemCard subHeader={'e-기프트 카드'} icon={'card-outline'} />
+        <OtherItemCard subHeader={`What's New`} icon={'mail-outline'} />
+        <OtherItemCard subHeader={'알림'} icon={'notifications-outline'} />
+        <OtherItemCard subHeader={'히스토리'} icon={'timer-outline'} />
+        <OtherItemCard subHeader={'전자영수증'} icon={'receipt-outline'} />
+        <OtherItemCard subHeader={'마이 스타벅스 리뷰'} icon={'cafe-outline'} />
         <View>
           <Text style={styles.subHeader}>고객 지원</Text>
         </View>
+        <OtherItemCard subHeader={'스토어 케어'} icon={'trail-sign-outline'} />
+        <OtherItemCard subHeader={'고객의 소리'} icon={'nuclear-outline'} />
+        <OtherItemCard subHeader={'매장 정보'} icon={'location-outline'} />
         <View>
           <Text style={styles.subHeader}>약관 및 정책</Text>
         </View>
+        <OtherItemCard subHeader={'이용약관'} icon={'reader-outline'} />
+        <OtherItemCard
+          subHeader={'개인정보 처리 방침'}
+          icon={'lock-closed-outline'}
+        />
       </ScrollView>
     </>
   );
 }
 
 const styles = StyleSheet.create({
+  headerIcons: {
+    position: 'absolute',
+    top: 60,
+    left: 370,
+  },
   header: {
     height: 90,
     backgroundColor: 'white',

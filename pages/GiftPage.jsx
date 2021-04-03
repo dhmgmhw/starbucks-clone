@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Tab, Tabs } from 'native-base';
 import { StyleSheet, View, Text } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function GiftPage() {
   return (
@@ -8,10 +9,23 @@ export default function GiftPage() {
       <View style={styles.header}>
         <Text style={styles.headerText}>Gift</Text>
       </View>
-      <Tabs locked={true} tabBarUnderlineStyle={{ backgroundColor: '#3AB27' }}>
+      <Ionicons
+        style={styles.headerIcons1}
+        name={'basket-outline'}
+        color={'grey'}
+        size={20}
+      />
+      <Ionicons
+        style={styles.headerIcons2}
+        name={'search'}
+        color={'grey'}
+        size={20}
+      />
+
+      <Tabs locked={true} tabBarUnderlineStyle={{ backgroundColor: '#3AB27B' }}>
         <Tab
           heading='홈'
-          activeTextStyle={{ color: 'Black', fontWeight: 'bold' }}
+          activeTextStyle={{ color: '#3AB27B', fontWeight: 'bold' }}
           textStyle={{ color: 'grey' }}
           tabStyle={{ backgroundColor: 'white' }}
           activeTabStyle={{ backgroundColor: 'white' }}>
@@ -52,5 +66,15 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 16,
     fontWeight: '600',
+  },
+  headerIcons1: {
+    position: 'absolute',
+    top: 60,
+    left: 370,
+  },
+  headerIcons2: {
+    position: 'absolute',
+    top: 60,
+    left: 340,
   },
 });

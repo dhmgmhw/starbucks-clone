@@ -1,7 +1,7 @@
 import React from 'react';
 import { Container, Tab, Tabs } from 'native-base';
 import { StyleSheet, View, Text } from 'react-native';
-import { MaterialIcons } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function OrderPage() {
   return (
@@ -9,10 +9,16 @@ export default function OrderPage() {
       <View style={styles.header}>
         <Text style={styles.headerText}>Order</Text>
       </View>
-      <Tabs locked={true} tabBarUnderlineStyle={{ backgroundColor: '#3AB27' }}>
+      <Ionicons
+        style={styles.headerIcons1}
+        name={'search-outline'}
+        color={'grey'}
+        size={25}
+      />
+      <Tabs locked={true} tabBarUnderlineStyle={{ backgroundColor: '#3AB27B' }}>
         <Tab
           heading='전체 메뉴'
-          activeTextStyle={{ color: 'Black', fontWeight: 'bold' }}
+          activeTextStyle={{ color: '#3AB27B', fontWeight: 'bold' }}
           textStyle={{ color: 'grey' }}
           tabStyle={{ backgroundColor: 'white' }}
           activeTabStyle={{ backgroundColor: 'white' }}>
@@ -52,5 +58,10 @@ const styles = StyleSheet.create({
   headerText: {
     fontWeight: '600',
     fontSize: 30,
+  },
+  headerIcons1: {
+    position: 'absolute',
+    top: 60,
+    left: 360,
   },
 });
