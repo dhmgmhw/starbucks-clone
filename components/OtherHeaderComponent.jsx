@@ -31,6 +31,6 @@ const styles = StyleSheet.create({
     fontSize: 30,
   },
   shadowMaker: {
-    height: 7,
+    height: 5,
   },
 });

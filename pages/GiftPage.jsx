@@ -2,12 +2,13 @@ import React from 'react';
 import { Container, Tab, Tabs } from 'native-base';
 import { StyleSheet, View, Text } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import HeaderComponent from '../components/HeaderComponent';
 
 export default function GiftPage() {
   return (
     <Container>
-      <HeaderComponent headerTitle='Gift' />
+      <View style={styles.header}>
+        <Text style={styles.headerText}>Gift</Text>
+      </View>
       <Ionicons
         style={styles.headerIcons1}
         name={'basket-outline'}
@@ -58,7 +59,10 @@ export default function GiftPage() {
 }
 const styles = StyleSheet.create({
   header: {
+    backgroundColor: 'white',
     height: 90,
+    borderBottomWidth: 1,
+    borderBottomColor: 'lightgrey',
   },
   headerText: {
     paddingTop: 60,
