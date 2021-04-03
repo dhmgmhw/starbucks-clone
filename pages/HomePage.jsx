@@ -15,6 +15,9 @@ import { Container } from "native-base";
 import { FontAwesome } from "@expo/vector-icons";
 import { color } from "react-native-reanimated";
 import homead from "../assets/homead.png";
+import ad2 from "../assets/ad2.jpg";
+import ad3 from "../assets/ad3.jpg";
+import ad4 from "../assets/ad4.jpg";
 
 export default function HomePage() {
   return (
@@ -43,12 +46,33 @@ export default function HomePage() {
           </TouchableOpacity>
         </View>
 
-        <View style={styles.Addbox}>
+        <TouchableOpacity style={styles.Addbox}>
           <Image
             source={homead}
             style={{ height: "100%", width: "100%", resizeMode: "cover" }}
           />
-        </View>
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.Add2box}>
+          <Image
+            source={ad2}
+            style={{ height: "100%", width: "100%", resizeMode: "cover" }}
+          />
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.Add3box}>
+          <Image
+            source={ad3}
+            style={{ height: "100%", width: "100%", resizeMode: "cover" }}
+          />
+        </TouchableOpacity>
+
+        <TouchableOpacity style={styles.Add4box}>
+          <Image
+            source={ad4}
+            style={{ height: "100%", width: "100%", resizeMode: "cover" }}
+          />
+        </TouchableOpacity>
       </ScrollView>
     </Container>
   );
@@ -80,6 +104,8 @@ const styles = StyleSheet.create({
     paddingTop: 30,
     paddingBottom: 30,
     margin: 20,
+    marginBottom: 5,
+    marginTop: 5,
     borderBottomColor: "black",
     width: "90%",
     height: 200,
@@ -108,8 +134,58 @@ const styles = StyleSheet.create({
   },
   Addbox: {
     margin: 20,
+    marginBottom: 5,
+    marginTop: 5,
     borderBottomColor: "black",
     height: 430,
+    backgroundColor: "white",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  Add2box: {
+    margin: 20,
+    marginBottom: 5,
+    marginTop: 5,
+    borderBottomColor: "black",
+    height: 300,
+    backgroundColor: "white",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  Add3box: {
+    margin: 20,
+    marginBottom: 5,
+    marginTop: 5,
+    borderBottomColor: "black",
+    height: 200,
+    backgroundColor: "white",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  Add4box: {
+    margin: 20,
+    marginBottom: 5,
+    marginTop: 5,
+    borderBottomColor: "black",
+    height: 450,
     backgroundColor: "white",
     shadowColor: "#000",
     shadowOffset: {
