@@ -2,13 +2,13 @@ import React from 'react';
 import { Container, Tab, Tabs } from 'native-base';
 import { StyleSheet, View, Text } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import HeaderComponent from '../components/HeaderComponent';
 
 export default function OrderPage() {
+  console.disableYellowBox = true;
   return (
     <Container>
-      <View style={styles.header}>
-        <Text style={styles.headerText}>Order</Text>
-      </View>
+      <HeaderComponent headerTitle='Order' />
       <Ionicons
         style={styles.headerIcons1}
         name={'search-outline'}
@@ -18,7 +18,7 @@ export default function OrderPage() {
       <Tabs locked={true} tabBarUnderlineStyle={{ backgroundColor: '#3AB27B' }}>
         <Tab
           heading='전체 메뉴'
-          activeTextStyle={{ color: '#3AB27B', fontWeight: 'bold' }}
+          activeTextStyle={{ color: 'black', fontWeight: '600' }}
           textStyle={{ color: 'grey' }}
           tabStyle={{ backgroundColor: 'white' }}
           activeTabStyle={{ backgroundColor: 'white' }}>
@@ -28,7 +28,7 @@ export default function OrderPage() {
         </Tab>
         <Tab
           heading='나만의 메뉴'
-          activeTextStyle={{ color: 'Black', fontWeight: 'bold' }}
+          activeTextStyle={{ color: 'black', fontWeight: '600' }}
           textStyle={{ color: 'grey' }}
           tabStyle={{ backgroundColor: 'white' }}
           activeTabStyle={{ backgroundColor: 'white' }}>
@@ -38,7 +38,7 @@ export default function OrderPage() {
         </Tab>
         <Tab
           heading='홀케이크 예약'
-          activeTextStyle={{ color: 'Black', fontWeight: 'bold' }}
+          activeTextStyle={{ color: 'black', fontWeight: '600' }}
           textStyle={{ color: 'grey' }}
           tabStyle={{ backgroundColor: 'white' }}
           activeTabStyle={{ backgroundColor: 'white' }}>

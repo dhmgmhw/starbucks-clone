@@ -2,13 +2,12 @@ import React from 'react';
 import { Container, Tab, Tabs } from 'native-base';
 import { StyleSheet, View, Text } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
+import HeaderComponent from '../components/HeaderComponent';
 
 export default function GiftPage() {
   return (
     <Container>
-      <View style={styles.header}>
-        <Text style={styles.headerText}>Gift</Text>
-      </View>
+      <HeaderComponent headerTitle='Gift' />
       <Ionicons
         style={styles.headerIcons1}
         name={'basket-outline'}
@@ -25,7 +24,7 @@ export default function GiftPage() {
       <Tabs locked={true} tabBarUnderlineStyle={{ backgroundColor: '#3AB27B' }}>
         <Tab
           heading='홈'
-          activeTextStyle={{ color: '#3AB27B', fontWeight: 'bold' }}
+          activeTextStyle={{ color: 'black', fontWeight: '600' }}
           textStyle={{ color: 'grey' }}
           tabStyle={{ backgroundColor: 'white' }}
           activeTabStyle={{ backgroundColor: 'white' }}>
@@ -35,7 +34,7 @@ export default function GiftPage() {
         </Tab>
         <Tab
           heading='카테고리'
-          activeTextStyle={{ color: 'Black', fontWeight: 'bold' }}
+          activeTextStyle={{ color: 'black', fontWeight: '600' }}
           textStyle={{ color: 'grey' }}
           tabStyle={{ backgroundColor: 'white' }}
           activeTabStyle={{ backgroundColor: 'white' }}>
@@ -45,7 +44,7 @@ export default function GiftPage() {
         </Tab>
         <Tab
           heading='선물함'
-          activeTextStyle={{ color: 'Black', fontWeight: 'bold' }}
+          activeTextStyle={{ color: 'black', fontWeight: '600' }}
           textStyle={{ color: 'grey' }}
           tabStyle={{ backgroundColor: 'white' }}
           activeTabStyle={{ backgroundColor: 'white' }}>

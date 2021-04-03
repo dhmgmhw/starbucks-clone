@@ -3,13 +3,12 @@ import { StyleSheet, View, Text } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import OtherItemCard from '../components/OtherItemCard';
 import { Ionicons } from '@expo/vector-icons';
+import OtherHeaderComponent from '../components/OtherHeaderComponent';
 
 export default function OtherPage() {
   return (
-    <>
-      <View style={styles.header}>
-        <Text style={styles.headerText}>Other</Text>
-      </View>
+    <View style={styles.container}>
+      <OtherHeaderComponent headerTitle='Other' />
       <Ionicons
         style={styles.headerIcons}
         name={'settings-outline'}
@@ -28,12 +27,15 @@ export default function OtherPage() {
         <OtherItemCard subHeader={'히스토리'} icon={'timer-outline'} />
         <OtherItemCard subHeader={'전자영수증'} icon={'receipt-outline'} />
         <OtherItemCard subHeader={'마이 스타벅스 리뷰'} icon={'cafe-outline'} />
+        <View style={styles.border}></View>
         <View>
           <Text style={styles.subHeader}>고객 지원</Text>
         </View>
         <OtherItemCard subHeader={'스토어 케어'} icon={'trail-sign-outline'} />
         <OtherItemCard subHeader={'고객의 소리'} icon={'nuclear-outline'} />
         <OtherItemCard subHeader={'매장 정보'} icon={'location-outline'} />
+        <View style={styles.border}></View>
+
         <View>
           <Text style={styles.subHeader}>약관 및 정책</Text>
         </View>
@@ -43,11 +45,15 @@ export default function OtherPage() {
           icon={'lock-closed-outline'}
         />
       </ScrollView>
-    </>
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'white',
+  },
+
   headerIcons: {
     position: 'absolute',
     top: 60,
@@ -70,5 +76,10 @@ const styles = StyleSheet.create({
     fontSize: 19,
     fontWeight: '600',
     padding: 30,
+  },
+  border: {
+    height: 1,
+    backgroundColor: 'lightgrey',
+    marginLeft: 40,
   },
 });
