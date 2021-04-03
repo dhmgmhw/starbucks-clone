@@ -44,6 +44,7 @@ export default function OtherPage() {
           subHeader={'개인정보 처리 방침'}
           icon={'lock-closed-outline'}
         />
+        <View style={styles.bottomBlock}></View>
       </ScrollView>
     </View>
   );
@@ -81,5 +82,8 @@ const styles = StyleSheet.create({
     height: 1,
     backgroundColor: 'lightgrey',
     marginLeft: 40,
+  },
+  bottomBlock: {
+    height: 140,
   },
 });
