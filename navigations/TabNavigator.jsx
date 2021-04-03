@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Platform } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import { Ionicons, Entypo } from '@expo/vector-icons';
+import { Ionicons } from '@expo/vector-icons';
 
 import HomePage from '../pages/HomePage';
 import PayPage from '../pages/PayPage';
@@ -11,8 +11,9 @@ import OtherPage from '../pages/OtherPage';
 
 const Tabs = createBottomTabNavigator();
 
-// const TabNavigator = () => {  // 왜넣는지?
-const TabNavigator = ({ navigation, route }) => {
+const TabNavigator = () => {
+  // 왜넣는지?
+  // const TabNavigator = ({ navigation, route }) => {
   return (
     <Tabs.Navigator
       screenOptions={({ route }) => ({
