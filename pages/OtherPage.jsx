@@ -1,10 +1,10 @@
-import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
+import React from "react";
+import { StyleSheet, View, Text, Image } from "react-native";
 
 export default function OtherPage() {
   return (
     <View style={styles.container}>
-      <Text style={{ fontSize: 30 }}>Other</Text>
+      <Image></Image>
     </View>
   );
 }
@@ -12,8 +12,8 @@ export default function OtherPage() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+    backgroundColor: "#fff",
+    alignItems: "center",
+    justifyContent: "center",
   },
 });
