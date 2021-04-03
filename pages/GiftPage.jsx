@@ -8,7 +8,7 @@ export default function GiftPage() {
       <View style={styles.header}>
         <Text style={styles.headerText}>Gift</Text>
       </View>
-      <Tabs locked={true} tabBarUnderlineStyle={{ backgroundColor: '#3AB27B' }}>
+      <Tabs locked={true} tabBarUnderlineStyle={{ backgroundColor: '#3AB27' }}>
         <Tab
           heading='홈'
           activeTextStyle={{ color: 'Black', fontWeight: 'bold' }}
@@ -45,12 +45,12 @@ export default function GiftPage() {
 }
 const styles = StyleSheet.create({
   header: {
-    height: 100,
+    height: 90,
   },
   headerText: {
     paddingTop: 60,
     textAlign: 'center',
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: '600',
   },
 });
