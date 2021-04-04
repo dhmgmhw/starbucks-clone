@@ -12,8 +12,12 @@ import {
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { Container } from "native-base";
+
 import { FontAwesome } from "@expo/vector-icons";
-import { color } from "react-native-reanimated";
+import { SimpleLineIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { EvilIcons } from "@expo/vector-icons";
+
 import homead from "../assets/homead.png";
 import ad2 from "../assets/ad2.jpg";
 import ad3 from "../assets/ad3.jpg";
@@ -33,6 +37,7 @@ export default function HomePage() {
           </Text>
         </View>
 
+        {/* 추후에 AnimatedHeader안에 들어갈 카드등록 기능을 가진 cardcomponent */}
         <View style={styles.makecard}>
           <Text style={styles.cardtext}>
             스타벅스 카드를 등록하시고{"\n"}
@@ -46,6 +51,41 @@ export default function HomePage() {
           </TouchableOpacity>
         </View>
 
+        {/* 최후에 헤더로 고정될 버튼 모음 */}
+        <View style={styles.lastheaderbutton}>
+          <TouchableOpacity
+            style={{ flex: 1, flexDirection: "row", marginRight: 15 }}>
+            <SimpleLineIcons
+              name="envelope-letter"
+              size={20}
+              color="black"
+              style={{ marginRight: 7 }}
+            />
+            <Text style={{ fontSize: 15 }}>Waht's New</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={{ flex: 1, flexDirection: "row" }}>
+            <MaterialCommunityIcons
+              name="ticket-confirmation-outline"
+              size={24}
+              color="black"
+              style={{ marginRight: 7 }}
+            />
+            <Text style={{ fontSize: 15 }}>Coupon</Text>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={{
+              flex: 1,
+              flexDirection: "row",
+              justifyContent: "flex-end",
+              paddingRight: 23,
+            }}>
+            <EvilIcons name="bell" size={28} color="black" />
+          </TouchableOpacity>
+        </View>
+
+        {/* 첫번째 광고, 추후 event페이지로 navigate */}
         <TouchableOpacity style={styles.Addbox}>
           <Image
             source={homead}
@@ -53,20 +93,19 @@ export default function HomePage() {
           />
         </TouchableOpacity>
 
+        {/* 광고들, 마찬가치로 event페이지로 navigate */}
         <TouchableOpacity style={styles.Add2box}>
           <Image
             source={ad2}
             style={{ height: "100%", width: "100%", resizeMode: "cover" }}
           />
         </TouchableOpacity>
-
         <TouchableOpacity style={styles.Add3box}>
           <Image
             source={ad3}
             style={{ height: "100%", width: "100%", resizeMode: "cover" }}
           />
         </TouchableOpacity>
-
         <TouchableOpacity style={styles.Add4box}>
           <Image
             source={ad4}
@@ -81,6 +120,7 @@ export default function HomePage() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    paddingTop: 100,
     backgroundColor: "#fff",
     shadowColor: "black",
     shadowOffset: {
@@ -119,6 +159,7 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
   },
+
   cardtext: {
     fontSize: 15,
     paddingBottom: 30,
@@ -131,6 +172,13 @@ const styles = StyleSheet.create({
     backgroundColor: "green",
     width: 100,
     borderRadius: 40,
+  },
+  lastheaderbutton: {
+    flex: 1,
+    flexDirection: "row",
+    marginTop: 20,
+    marginLeft: 30,
+    marginBottom: 40,
   },
   Addbox: {
     margin: 20,
