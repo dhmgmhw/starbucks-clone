@@ -15,7 +15,7 @@ export default function OtherPage() {
         color={'grey'}
         size={20}
       />
-      <ScrollView style={styles.mainContainer}>
+      <ScrollView showsScrollIndicator={false} style={styles.mainContainer}>
         <View>
           <Text style={styles.subHeader}>서비스</Text>
         </View>

@@ -1,11 +1,23 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Tab, Tabs } from 'native-base';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, Text, ScrollView, Image } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import HeaderComponent from '../components/HeaderComponent';
+import { getData } from '../config/BackData';
 
 export default function OrderPage() {
   console.disableYellowBox = true;
+
+  const [data, setData] = useState([]);
+  const readyData = async () => {
+    const data = await getData();
+    setData(data);
+  };
+
+  useEffect(() => {
+    readyData();
+  }, []);
+
   return (
     <Container>
       <HeaderComponent headerTitle='Order' />
@@ -22,9 +34,13 @@ export default function OrderPage() {
           textStyle={{ color: 'grey' }}
           tabStyle={{ backgroundColor: 'white' }}
           activeTabStyle={{ backgroundColor: 'white' }}>
-          <View>
-            <Text>Good</Text>
-          </View>
+          <ScrollView>
+            {/* {data.map((menu, i) => {
+            return(
+            <Text key={i}>{menu}</Text>
+            ));
+            } */}
+          </ScrollView>
         </Tab>
         <Tab
           heading='나만의 메뉴'
@@ -33,7 +49,8 @@ export default function OrderPage() {
           tabStyle={{ backgroundColor: 'white' }}
           activeTabStyle={{ backgroundColor: 'white' }}>
           <View>
-            <Text>Good2</Text>
+            <Text>등록된 나만의 메뉴가 없습니다.</Text>
+            <Text>좋아하는 메뉴에 💚를 누르고 편리하게 주문해 보세요.</Text>
           </View>
         </Tab>
         <Tab
@@ -42,9 +59,9 @@ export default function OrderPage() {
           textStyle={{ color: 'grey' }}
           tabStyle={{ backgroundColor: 'white' }}
           activeTabStyle={{ backgroundColor: 'white' }}>
-          <View>
+          <ScrollView>
             <Text>Good3</Text>
-          </View>
+          </ScrollView>
         </Tab>
       </Tabs>
     </Container>
