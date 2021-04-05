@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Tab, Tabs } from 'native-base';
 import { StyleSheet, View, Text } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 export default function GiftPage() {
   return (
@@ -8,10 +9,23 @@ export default function GiftPage() {
       <View style={styles.header}>
         <Text style={styles.headerText}>Gift</Text>
       </View>
+      <Ionicons
+        style={styles.headerIcons1}
+        name={'basket-outline'}
+        color={'grey'}
+        size={20}
+      />
+      <Ionicons
+        style={styles.headerIcons2}
+        name={'search'}
+        color={'grey'}
+        size={20}
+      />
+
       <Tabs locked={true} tabBarUnderlineStyle={{ backgroundColor: '#3AB27B' }}>
         <Tab
           heading='홈'
-          activeTextStyle={{ color: 'Black', fontWeight: 'bold' }}
+          activeTextStyle={{ color: 'black', fontWeight: '600' }}
           textStyle={{ color: 'grey' }}
           tabStyle={{ backgroundColor: 'white' }}
           activeTabStyle={{ backgroundColor: 'white' }}>
@@ -21,7 +35,7 @@ export default function GiftPage() {
         </Tab>
         <Tab
           heading='카테고리'
-          activeTextStyle={{ color: 'Black', fontWeight: 'bold' }}
+          activeTextStyle={{ color: 'black', fontWeight: '600' }}
           textStyle={{ color: 'grey' }}
           tabStyle={{ backgroundColor: 'white' }}
           activeTabStyle={{ backgroundColor: 'white' }}>
@@ -31,7 +45,7 @@ export default function GiftPage() {
         </Tab>
         <Tab
           heading='선물함'
-          activeTextStyle={{ color: 'Black', fontWeight: 'bold' }}
+          activeTextStyle={{ color: 'black', fontWeight: '600' }}
           textStyle={{ color: 'grey' }}
           tabStyle={{ backgroundColor: 'white' }}
           activeTabStyle={{ backgroundColor: 'white' }}>
@@ -45,12 +59,25 @@ export default function GiftPage() {
 }
 const styles = StyleSheet.create({
   header: {
-    height: 100,
+    backgroundColor: 'white',
+    height: 90,
+    borderBottomWidth: 1,
+    borderBottomColor: 'lightgrey',
   },
   headerText: {
     paddingTop: 60,
     textAlign: 'center',
-    fontSize: 18,
+    fontSize: 16,
     fontWeight: '600',
+  },
+  headerIcons1: {
+    position: 'absolute',
+    top: 60,
+    left: 370,
+  },
+  headerIcons2: {
+    position: 'absolute',
+    top: 60,
+    left: 340,
   },
 });

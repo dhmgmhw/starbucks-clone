@@ -7,13 +7,12 @@ import {
   TouchableOpacity,
 } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import HeaderComponent from "../components/HeaderComponent";
 
 export default function PayPage() {
   return (
     <ScrollView style={styles.container}>
-      <View style={styles.header}>
-        <Text style={styles.headerText}>Pay</Text>
-      </View>
+      <HeaderComponent headerTitle="Pay" />
       <View style={styles.card}>
         <View style={styles.creditCard}>
           <Ionicons name="add-circle-outline" size={45} style={styles.icon} />

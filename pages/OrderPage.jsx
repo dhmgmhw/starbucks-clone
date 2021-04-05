@@ -1,90 +1,67 @@
-import React, { useRef } from 'react';
-import {
-  SafeAreaView,
-  StyleSheet,
-  Image,
-  View,
-  Text,
-  Animated,
-} from 'react-native';
+import React from 'react';
+import { Container, Tab, Tabs } from 'native-base';
+import { StyleSheet, View, Text } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
+import HeaderComponent from '../components/HeaderComponent';
 
-const HEADER_MAX_HEIGHT = 150;
-const HEADER_MIN_HEIGHT = 80;
-const HEADER_SCROLL_DISTANCE = HEADER_MAX_HEIGHT - HEADER_MIN_HEIGHT;
-
-function OrderPage() {
-  const scrollY = useRef(new Animated.Value(0)).current;
-
-  const headerTranslateY = scrollY.interpolate({
-    inputRange: [0, HEADER_SCROLL_DISTANCE],
-    outputRange: [0, -HEADER_SCROLL_DISTANCE],
-    extrapolate: 'clamp',
-  });
-
-  const titleScale = scrollY.interpolate({
-    inputRange: [0, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
-    outputRange: [2, 1.5, 0.8],
-    extrapolate: 'clamp',
-  });
-  const titleTranslateY = scrollY.interpolate({
-    inputRange: [0, HEADER_SCROLL_DISTANCE / 2, HEADER_SCROLL_DISTANCE],
-    outputRange: [30, 10, -8],
-    extrapolate: 'clamp',
-  });
-
+export default function OrderPage() {
+  console.disableYellowBox = true;
   return (
-    <SafeAreaView style={styles.saveArea}>
-      <Animated.ScrollView
-        contentContainerStyle={{ paddingTop: HEADER_MAX_HEIGHT - 300 }}
-        scrollEventThrottle={16}
-        onScroll={Animated.event(
-          [{ nativeEvent: { contentOffset: { y: scrollY } } }],
-          { useNativeDriver: true }
-        )}></Animated.ScrollView>
-      <Animated.View
-        style={[
-          styles.header,
-          { transform: [{ translateY: headerTranslateY }] },
-        ]}></Animated.View>
-      <Animated.View
-        style={[
-          styles.topBar,
-          {
-            transform: [{ scale: titleScale }, { translateY: titleTranslateY }],
-          },
-        ]}>
-        <Text style={styles.title}>Order</Text>
-      </Animated.View>
-    </SafeAreaView>
+    <Container>
+      <HeaderComponent headerTitle='Order' />
+      <Ionicons
+        style={styles.headerIcons1}
+        name={'search-outline'}
+        color={'grey'}
+        size={25}
+      />
+      <Tabs locked={true} tabBarUnderlineStyle={{ backgroundColor: '#3AB27B' }}>
+        <Tab
+          heading='전체 메뉴'
+          activeTextStyle={{ color: 'black', fontWeight: '600' }}
+          textStyle={{ color: 'grey' }}
+          tabStyle={{ backgroundColor: 'white' }}
+          activeTabStyle={{ backgroundColor: 'white' }}>
+          <View>
+            <Text>Good</Text>
+          </View>
+        </Tab>
+        <Tab
+          heading='나만의 메뉴'
+          activeTextStyle={{ color: 'black', fontWeight: '600' }}
+          textStyle={{ color: 'grey' }}
+          tabStyle={{ backgroundColor: 'white' }}
+          activeTabStyle={{ backgroundColor: 'white' }}>
+          <View>
+            <Text>Good2</Text>
+          </View>
+        </Tab>
+        <Tab
+          heading='홀케이크 예약'
+          activeTextStyle={{ color: 'black', fontWeight: '600' }}
+          textStyle={{ color: 'grey' }}
+          tabStyle={{ backgroundColor: 'white' }}
+          activeTabStyle={{ backgroundColor: 'white' }}>
+          <View>
+            <Text>Good3</Text>
+          </View>
+        </Tab>
+      </Tabs>
+    </Container>
   );
 }
-
 const styles = StyleSheet.create({
-  saveArea: {
-    flex: 1,
-    backgroundColor: 'white',
-  },
   header: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    right: 0,
-    overflow: 'hidden',
-    height: HEADER_MAX_HEIGHT,
+    marginTop: 100,
+    marginLeft: 20,
   },
-  topBar: {
-    marginTop: 30,
-    height: 70,
-    justifyContent: 'center',
-    position: 'absolute',
-    top: 0,
-    left: 170,
-    right: 0,
-  },
-  title: {
-    fontSize: 15,
+  headerText: {
     fontWeight: '600',
+    fontSize: 30,
+  },
+  headerIcons1: {
+    position: 'absolute',
+    top: 60,
+    left: 360,
   },
 });
-
-export default OrderPage;
