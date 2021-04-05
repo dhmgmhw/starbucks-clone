@@ -52,7 +52,7 @@ const TabNavigator = () => {
         style: {
           backgroundColor: '#fff',
           borderTopColor: '#eee',
-          height: 85,
+          height: Platform.OS === 'ios' ? 85 : 60,
         },
       }}>
       <Tabs.Screen name='Home' component={HomePage} />

@@ -4,7 +4,6 @@ import {
 import axios from 'axios';
 
 export function getData() {
-
     axios
         .get('http://3.36.65.84/menu')
         .then((Response) => {
