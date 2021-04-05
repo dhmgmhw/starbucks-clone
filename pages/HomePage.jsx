@@ -17,13 +17,22 @@ import { FontAwesome } from "@expo/vector-icons";
 import { SimpleLineIcons } from "@expo/vector-icons";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { EvilIcons } from "@expo/vector-icons";
+import { Fontisto } from "@expo/vector-icons";
 
 import homead from "../assets/homead.png";
 import ad2 from "../assets/ad2.jpg";
 import ad3 from "../assets/ad3.jpg";
 import ad4 from "../assets/ad4.jpg";
+import { useEffect } from "react";
+import axios from "axios";
+import { image, name } from "faker";
+import newMenu from "../components/newMenu";
 
 export default function HomePage() {
+  const result = axios.get("http://3.36.65.84/menu").then(function (response) {
+    console.log(response.data.result);
+  });
+
   return (
     <Container style={styles.container}>
       <ScrollView>
@@ -33,7 +42,8 @@ export default function HomePage() {
         <View style={styles.TopMessage}>
           <Text style={styles.toptext}>
             고객님~{"\n"}반갑습니다!
-            <FontAwesome name="coffee" size={24} color="green" />
+            <Fontisto name="coffeescript" size={24} color="green" />
+            {/* <FontAwesome name="coffee" size={24} color="green" /> */}
           </Text>
         </View>
 
@@ -63,7 +73,6 @@ export default function HomePage() {
             />
             <Text style={{ fontSize: 15 }}>Waht's New</Text>
           </TouchableOpacity>
-
           <TouchableOpacity style={{ flex: 1, flexDirection: "row" }}>
             <MaterialCommunityIcons
               name="ticket-confirmation-outline"
@@ -73,7 +82,6 @@ export default function HomePage() {
             />
             <Text style={{ fontSize: 15 }}>Coupon</Text>
           </TouchableOpacity>
-
           <TouchableOpacity
             style={{
               flex: 1,
@@ -92,6 +100,17 @@ export default function HomePage() {
             style={{ height: "100%", width: "100%", resizeMode: "cover" }}
           />
         </TouchableOpacity>
+
+        {/* 가로스크롤 newMenu */}
+        <ScrollView
+          horizontal={true}
+          style={styles.newMenu}
+          showsHorizontalScrollIndicator={false}>
+          <Text>newmenu</Text>
+          <View style={styles.container}>
+            <Image source={ad2}></Image>
+          </View>
+        </ScrollView>
 
         {/* 광고들, 마찬가치로 event페이지로 navigate */}
         <TouchableOpacity style={styles.Add2box}>
@@ -131,7 +150,7 @@ const styles = StyleSheet.create({
     shadowRadius: 5,
   },
   TopMessage: {
-    paddingTop: 100,
+    paddingTop: 60,
     paddingLeft: 25,
     paddingBottom: 30,
   },
@@ -195,6 +214,12 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
+  },
+  newMenu: {
+    paddingTop: 30,
+    paddingBottom: 30,
+    padding: 20,
+    height: 200,
   },
   Add2box: {
     margin: 20,
