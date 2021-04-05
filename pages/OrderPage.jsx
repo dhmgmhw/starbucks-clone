@@ -4,29 +4,25 @@ import { StyleSheet, Text, ScrollView, Image, Dimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import HeaderComponent from '../components/HeaderComponent';
 import NoMymenuCard from '../components/NoMymenuCard';
-// import { getData } from '../config/BackData';
+import { getData } from '../config/BackData';
 import data from '../data.json';
 const diviceWidth = Dimensions.get('window').width;
 import CateComponent from '../components/CateComponent';
 
-// import axios from 'axios';
-
 export default function OrderPage({ navigation }) {
   console.disableYellowBox = true;
-  let categories = data.result;
 
-  // const getData = async () => {
-  //   try {
-  //     const response = await axios.get('http://3.36.65.84/menu');
-  //     alert(JSON.stringify(response.data));
-  //   } catch (error) {
-  //     alert(error.message);
-  //   }
-  // };
+  const [categories, setCategories] = useState(data.result);
 
-  // useEffect(() => {
-  //   getData();
-  // }, []);
+  useEffect(() => {
+    download();
+  }, []);
+
+  const download = async () => {
+    const result = await getData();
+
+    setCategories(result);
+  };
 
   return (
     <Container>
@@ -42,8 +38,8 @@ export default function OrderPage({ navigation }) {
           heading='전체 메뉴'
           activeTextStyle={{ color: 'black', fontWeight: '600' }}
           textStyle={{ color: 'grey' }}
-          tabStyle={{ backgroundColor: 'white' }}
-          activeTabStyle={{ backgroundColor: 'white' }}>
+          tabStyle={{ backgroundColor: '#FFFFFF' }}
+          activeTabStyle={{ backgroundColor: '#FFFFFF' }}>
           <ScrollView>
             {categories.map((category, i) => {
               return (
@@ -60,16 +56,16 @@ export default function OrderPage({ navigation }) {
           heading='나만의 메뉴'
           activeTextStyle={{ color: 'black', fontWeight: '600' }}
           textStyle={{ color: 'grey' }}
-          tabStyle={{ backgroundColor: 'white' }}
-          activeTabStyle={{ backgroundColor: 'white' }}>
+          tabStyle={{ backgroundColor: '#FFFFFF' }}
+          activeTabStyle={{ backgroundColor: '#FFFFFF' }}>
           <NoMymenuCard />
         </Tab>
         <Tab
           heading='홀케이크 예약'
           activeTextStyle={{ color: 'black', fontWeight: '600' }}
           textStyle={{ color: 'grey' }}
-          tabStyle={{ backgroundColor: 'white' }}
-          activeTabStyle={{ backgroundColor: 'white' }}>
+          tabStyle={{ backgroundColor: '#FFFFFF' }}
+          activeTabStyle={{ backgroundColor: '#FFFFFF' }}>
           <ScrollView>
             <Text
               style={{

@@ -12,13 +12,16 @@ const diviceWidth = Dimensions.get('window').width;
 
 export default function CateComponent({ navigation, category }) {
   return (
-    <TouchableOpacity>
+    <TouchableOpacity
+      onPress={() => {
+        navigation.navigate('DetailPage', category.name);
+      }}>
       <Grid style={styles.cate}>
         <Col size={1}>
           <Image
             style={styles.cardImage}
             resizeMode='cover'
-            source={{ uri: category.image }}
+            source={{ uri: category.img_url }}
           />
         </Col>
         <Col size={2} style={styles.cardText}>
