@@ -9,6 +9,7 @@ import {
   ImageBackground,
   ScrollViewComponent,
   ScrollView,
+  Dimensions,
 } from "react-native";
 import { StatusBar } from "expo-status-bar";
 import { Container } from "native-base";
@@ -26,6 +27,7 @@ import ad4 from "../assets/ad4.jpg";
 
 import axios from "axios";
 import data from "../data.json";
+const diviceWidth = Dimensions.get("window").width;
 import NewMenu from "../components/NewMenu";
 
 export default function HomePage() {
@@ -43,7 +45,7 @@ export default function HomePage() {
   //   readyData();
   // }, []);
 
-  let menu = data.menu;
+  let categories = data.result;
 
   return (
     <Container style={styles.container}>
@@ -83,7 +85,7 @@ export default function HomePage() {
               color="black"
               style={{ marginRight: 7 }}
             />
-            <Text style={{ fontSize: 15 }}>Waht's New</Text>
+            <Text style={{ fontSize: 15 }}>What's New</Text>
           </TouchableOpacity>
           <TouchableOpacity style={{ flex: 1, flexDirection: "row" }}>
             <MaterialCommunityIcons
@@ -113,16 +115,61 @@ export default function HomePage() {
           />
         </TouchableOpacity>
 
+        <View
+          style={{
+            flex: 1,
+            flexDirection: "row",
+          }}>
+          <Text
+            style={{
+              fontSize: 23,
+              fontWeight: "bold",
+              padding: 20,
+            }}>
+            새로 나온 메뉴
+          </Text>
+        </View>
         {/* ###################가로스크롤 NewMenu ###################*/}
         <ScrollView
           horizontal={true}
           style={styles.newMenu}
           showsHorizontalScrollIndicator={false}>
-          <View style={styles.menuContainer}>
-            {menu.map((content, i) => {
-              return <NewMenu content={content} key={i} />;
-            })}
-          </View>
+          {categories.map((category, i) => {
+            return <NewMenu category={category} key={i} />;
+          })}
+        </ScrollView>
+
+        <View
+          style={{
+            flex: 1,
+            flexDirection: "row",
+          }}>
+          <Text
+            style={{
+              fontSize: 23,
+              fontWeight: "bold",
+              padding: 20,
+            }}>
+            이 시간대 인기 메뉴
+          </Text>
+          <Text
+            style={{
+              fontSize: 13,
+              color: "grey",
+              margin: 20,
+              marginLeft: 30,
+            }}>
+            주중 오후 7시 기준
+          </Text>
+        </View>
+        {/* ###################가로스크롤 NewMenu ###################*/}
+        <ScrollView
+          horizontal={true}
+          style={styles.newMenu}
+          showsHorizontalScrollIndicator={false}>
+          {categories.map((category, i) => {
+            return <NewMenu category={category} key={i} />;
+          })}
         </ScrollView>
 
         {/* 광고들, 마찬가치로 event페이지로 navigate */}
@@ -228,7 +275,9 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
   },
-  newMenu: {},
+  newMenu: {
+    paddingLeft: 18,
+  },
   menuContainer: {},
   Add2box: {
     margin: 20,

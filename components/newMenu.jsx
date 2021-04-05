@@ -1,21 +1,60 @@
-import { name } from "faker";
 import React from "react";
-import { StyleSheet, View, Text, Image } from "react-native";
-import data from "../data.json";
+import {
+  StyleSheet,
+  Text,
+  Dimensions,
+  TouchableOpacity,
+  Image,
+} from "react-native";
+import { Col, Row, Grid } from "react-native-easy-grid";
 
-console.log(data.menu);
+const diviceWidth = Dimensions.get("window").width;
 
-export default function NewMenu(content) {
+export default function NewMenu({ category }) {
   return (
-    <View style={styles.card}>
-      <Image style={styles.cardImage} source={{ uri: content.image }} />
-    </View>
+    <TouchableOpacity>
+      <Grid style={styles.cate}>
+        <Row size={3}>
+          <Image
+            style={styles.cardImage}
+            resizeMode="cover"
+            source={{ uri: category.image }}
+          />
+        </Row>
+        <Row size={1} style={styles.cardText}>
+          <Text style={styles.cardTitle}>
+            {category.i}
+            {category.name}
+          </Text>
+        </Row>
+      </Grid>
+    </TouchableOpacity>
   );
 }
 
 const styles = StyleSheet.create({
-  card: {},
+  cate: {
+    height: 180,
+    width: 100,
+    width: diviceWidth * 0.38,
+    alignSelf: "center",
+    marginVertical: 15,
+    flex: 1,
+    alignItems: "center",
+  },
   cardImage: {
-    resizeMode: "repeat",
+    height: 130,
+    width: 130,
+    borderRadius: 100,
+  },
+  cardTitle: {
+    fontSize: 19,
+    fontWeight: "500",
+    marginBottom: 5,
+  },
+  cardEnTitle: {
+    fontSize: 13,
+    color: "lightgrey",
+    fontWeight: "500",
   },
 });
