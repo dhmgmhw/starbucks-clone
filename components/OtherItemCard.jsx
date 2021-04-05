@@ -25,9 +25,10 @@ export default function OtherItemCard({ icon, subHeader }) {
 const styles = StyleSheet.create({
   header: {
     backgroundColor: 'white',
-    marginLeft: 40,
+    marginLeft: 20,
     marginRight: 10,
-    marginVertical: 17,
+    marginVertical: 6,
+    padding: 10,
   },
   headerText: {
     marginLeft: 3,

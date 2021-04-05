@@ -1,165 +1,160 @@
-// import React, { useState, useEffect } from 'react';
-// import { StyleSheet, ImageBackground, Alert, AsyncStorage } from 'react-native';
-// import { Container, Content, Text, Form, Button } from 'native-base';
-// import ItemInput from '../components/ItemInput';
-// import { signIn } from '../config/firebaseFunctions';
-// import Loading from '../pages/Loading';
-// export default function SignInPage({ navigation }) {
-//   const [ready, setReady] = useState(false);
+import React, { useState, useEffect } from 'react';
+import {
+  StyleSheet,
+  Alert,
+  AsyncStorage,
+  Image,
+  Dimensions,
+} from 'react-native';
+import { Container, Content, Text, Form, Button } from 'native-base';
+import ItemInput from '../components/ItemInput';
+import { StatusBar } from 'expo-status-bar';
+import HeaderComponent from '../components/HeaderComponent';
 
-//   const [email, setEmail] = useState('');
-//   const [password, setPassword] = useState('');
+const diviceWidth = Dimensions.get('window').width;
 
-//   const [emailError, setEmailError] = useState('');
-//   const [passwordError, setPasswordError] = useState('');
+export default function LoginPage({ navigation }) {
+  const [ready, setReady] = useState(false);
 
-//   useEffect(() => {
-//     navigation.addListener('beforeRemove', (e) => {
-//       e.preventDefault();
-//     });
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
 
-//     setTimeout(() => {
-//       AsyncStorage.getItem('session', (err, result) => {
-//         console.log('ASYNCSTORAGE');
-//         console.log(result);
-//         if (result) {
-//           navigation.push('TabNavigator');
-//         } else {
-//           setReady(true);
-//         }
-//       });
-//       setReady(true);
-//     }, 1000);
-//   }, []);
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
 
-//   const doSignIn = () => {
-//     //Email 로그인 버튼을 누를 때 실행되는 함수
-//     if (email == '') {
-//       setEmailError('이메일을 입력해주세요');
-//       return false;
-//     } else {
-//       setEmailError('');
-//     }
+  useEffect(() => {
+    navigation.addListener('beforeRemove', (e) => {
+      e.preventDefault();
+    });
 
-//     if (password == '') {
-//       setPasswordError('비밀번호를 입력해주세요');
-//       return false;
-//     } else {
-//       setPasswordError('');
-//     }
+    setTimeout(() => {
+      AsyncStorage.getItem('session', (err, result) => {
+        console.log('ASYNCSTORAGE');
+        console.log(result);
+        if (result) {
+          navigation.push('TabNavigator');
+        } else {
+          setReady(true);
+        }
+      });
+      setReady(true);
+    }, 1000);
+  }, []);
 
-//     signIn(email, password, navigation);
-//   };
-//   const setEmailFunc = (itemInputEmail) => {
-//     setEmail(itemInputEmail);
-//   };
-//   const setPasswordFunc = (itemInputPassword) => {
-//     setPassword(itemInputPassword);
-//   };
+  const doSignIn = () => {
+    //   나중에 Alert 대신 모달창으로 디자인해보자
+    if (email == '') {
+      setEmailError('');
+      Alert.alert('아이디를 입력해주세요');
+      return false;
+    } else {
+      setEmailError('');
+    }
 
-//   const goSignUp = () => {
-//     navigation.navigate('SignUpPage');
-//   };
+    if (password == '') {
+      setPasswordError('');
+      Alert.alert('아이디를 입력해주세요');
+      return false;
+    } else {
+      setPasswordError('');
+    }
 
-//   return ready ? (
-//     <Container style={styles.container}>
-//       <ImageBackground source={bImage} style={styles.backgroundImage}>
-//         <Content contentContainerStyle={styles.content} scrollEnabled={false}>
-//           <Text style={styles.title}>
-//             <Text style={styles.highlite}>we</Text>gram
-//           </Text>
-//           <Form style={styles.form}>
-//             <ItemInput
-//               title={'이메일'}
-//               type={'email'}
-//               setFunc={setEmailFunc}
-//               error={emailError}
-//             />
-//             <ItemInput
-//               title={'비밀번호'}
-//               type={'password'}
-//               setFunc={setPasswordFunc}
-//               error={passwordError}
-//             />
-//           </Form>
-//           {/* <Button full style={styles.snsSignUp}>
-//             <Text>Facebook 로그인</Text>
-//           </Button> */}
-//           <Button full style={styles.emailSignIn} onPress={doSignIn}>
-//             <Text>Email 로그인</Text>
-//           </Button>
-//           <Button full style={styles.emailSignUp} onPress={goSignUp}>
-//             <Text style={{ color: '#333' }}>회원가입</Text>
-//           </Button>
-//         </Content>
-//       </ImageBackground>
-//     </Container>
-//   ) : (
-//     <Loading />
-//   );
-// }
+    signIn(email, password, navigation);
+  };
+  const setEmailFunc = (itemInputEmail) => {
+    setEmail(itemInputEmail);
+  };
+  const setPasswordFunc = (itemInputPassword) => {
+    setPassword(itemInputPassword);
+  };
 
-// const styles = StyleSheet.create({
-//   container: {},
-//   backgroundImage: {
-//     width: '100%',
-//     height: '100%',
-//   },
-//   content: {
-//     flex: 1,
-//     alignItems: 'center',
-//     justifyContent: 'center',
-//     backgroundColor: 'rgba(52, 52, 52, 0.5)',
-//     margin: 20,
-//     borderRadius: 20,
-//   },
-//   title: {
-//     fontSize: 25,
-//     fontWeight: '700',
-//     color: '#fff',
-//     textAlign: 'center',
-//   },
-//   highlite: {
-//     fontSize: 25,
-//     fontWeight: '700',
-//     color: 'deeppink',
-//     textAlign: 'center',
-//   },
-//   form: {
-//     width: 250,
-//     borderRadius: 10,
-//     paddingBottom: 20,
-//     paddingRight: 20,
-//     paddingLeft: 20,
-//     marginTop: 10,
-//   },
-//   label: {
-//     color: '#fff',
-//   },
-//   input: {
-//     color: '#fff',
-//   },
-//   snsSignUp: {
-//     alignSelf: 'center',
-//     width: 250,
-//     marginTop: 10,
-//     borderRadius: 10,
-//     backgroundColor: '#4667A5',
-//   },
-//   emailSignIn: {
-//     alignSelf: 'center',
-//     width: 250,
-//     marginTop: 5,
-//     borderRadius: 10,
-//     backgroundColor: '#333',
-//   },
-//   emailSignUp: {
-//     alignSelf: 'center',
-//     width: 250,
-//     marginTop: 5,
-//     borderRadius: 10,
-//     backgroundColor: '#eee',
-//     borderWidth: 1,
-//     borderColor: '#333',
-//   },
-// });
+  const goSignUp = () => {
+    navigation.navigate('SignUpPage');
+  };
+
+  return (
+    <Container style={styles.container}>
+      <StatusBar style='black' />
+      <HeaderComponent headerTitle='로그인' />
+      <Content contentContainerStyle={styles.content} scrollEnabled={false}>
+        <Image
+          style={styles.logo}
+          resizeMode='contain'
+          source={require('../assets/logo.png')}
+        />
+        <Text style={styles.title}>안녕하세요.{'\n'}스타벅스입니다.</Text>
+        <Text style={styles.subTitle}>
+          {'\n'}회원 서비스 이용을 위해 로그인 해주세요.
+        </Text>
+        <Form style={styles.form}>
+          <ItemInput
+            title={'아이디'}
+            type={'아이디'}
+            setFunc={setEmailFunc}
+            error={emailError}
+          />
+          <ItemInput
+            title={'비밀번호'}
+            type={'password'}
+            setFunc={setPasswordFunc}
+            error={passwordError}
+          />
+        </Form>
+        <Button full style={styles.signInBtn} onPress={goSignUp}>
+          <Text style={styles.signInBtnText}>회원가입</Text>
+        </Button>
+      </Content>
+      <Button full style={styles.loginBtn} onPress={doSignIn}>
+        <Text>로그인하기</Text>
+      </Button>
+    </Container>
+  );
+}
+
+const styles = StyleSheet.create({
+  logo: {
+    height: 100,
+    marginBottom: 30,
+    alignSelf: 'center',
+    right: 120,
+  },
+  content: {
+    flex: 1,
+    justifyContent: 'center',
+    margin: 20,
+    bottom: 60,
+  },
+  title: {
+    paddingLeft: 20,
+    fontSize: 25,
+    fontWeight: '700',
+  },
+  subTitle: {
+    paddingLeft: 20,
+  },
+  form: {
+    width: diviceWidth * 0.9,
+    borderRadius: 10,
+    paddingBottom: 20,
+    paddingRight: 20,
+    paddingLeft: 20,
+    marginTop: 10,
+  },
+  loginBtn: {
+    alignSelf: 'center',
+    width: diviceWidth * 0.9,
+    marginBottom: 30,
+    borderRadius: 100,
+    backgroundColor: '#3AB27B',
+  },
+  signInBtn: {
+    alignSelf: 'center',
+    width: 120,
+    marginTop: 5,
+    backgroundColor: 'white',
+  },
+  signInBtnText: {
+    color: 'black',
+    fontSize: 14,
+  },
+});
