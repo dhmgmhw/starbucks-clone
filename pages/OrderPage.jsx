@@ -1,22 +1,32 @@
 import React, { useState, useEffect } from 'react';
 import { Container, Tab, Tabs } from 'native-base';
-import { StyleSheet, View, Text, ScrollView, Image } from 'react-native';
+import { StyleSheet, Text, ScrollView, Image, Dimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import HeaderComponent from '../components/HeaderComponent';
-import { getData } from '../config/BackData';
+import NoMymenuCard from '../components/NoMymenuCard';
+// import { getData } from '../config/BackData';
+import data from '../data.json';
+const diviceWidth = Dimensions.get('window').width;
+import CateComponent from '../components/CateComponent';
 
-export default function OrderPage() {
+// import axios from 'axios';
+
+export default function OrderPage({ navigation }) {
   console.disableYellowBox = true;
+  let categories = data.result;
 
-  const [data, setData] = useState([]);
-  const readyData = async () => {
-    const data = await getData();
-    setData(data);
-  };
+  // const getData = async () => {
+  //   try {
+  //     const response = await axios.get('http://3.36.65.84/menu');
+  //     alert(JSON.stringify(response.data));
+  //   } catch (error) {
+  //     alert(error.message);
+  //   }
+  // };
 
-  useEffect(() => {
-    readyData();
-  }, []);
+  // useEffect(() => {
+  //   getData();
+  // }, []);
 
   return (
     <Container>
@@ -35,11 +45,15 @@ export default function OrderPage() {
           tabStyle={{ backgroundColor: 'white' }}
           activeTabStyle={{ backgroundColor: 'white' }}>
           <ScrollView>
-            {/* {data.map((menu, i) => {
-            return(
-            <Text key={i}>{menu}</Text>
-            ));
-            } */}
+            {categories.map((category, i) => {
+              return (
+                <CateComponent
+                  category={category}
+                  key={i}
+                  navigation={navigation}
+                />
+              );
+            })}
           </ScrollView>
         </Tab>
         <Tab
@@ -48,10 +62,7 @@ export default function OrderPage() {
           textStyle={{ color: 'grey' }}
           tabStyle={{ backgroundColor: 'white' }}
           activeTabStyle={{ backgroundColor: 'white' }}>
-          <View>
-            <Text>등록된 나만의 메뉴가 없습니다.</Text>
-            <Text>좋아하는 메뉴에 💚를 누르고 편리하게 주문해 보세요.</Text>
-          </View>
+          <NoMymenuCard />
         </Tab>
         <Tab
           heading='홀케이크 예약'
@@ -60,7 +71,15 @@ export default function OrderPage() {
           tabStyle={{ backgroundColor: 'white' }}
           activeTabStyle={{ backgroundColor: 'white' }}>
           <ScrollView>
-            <Text>Good3</Text>
+            <Text
+              style={{
+                textAlign: 'center',
+                marginTop: 250,
+                fontSize: 22,
+                fontWeight: '600',
+              }}>
+              🚧 공사중... 🚧
+            </Text>
           </ScrollView>
         </Tab>
       </Tabs>
@@ -68,14 +87,6 @@ export default function OrderPage() {
   );
 }
 const styles = StyleSheet.create({
-  header: {
-    marginTop: 100,
-    marginLeft: 20,
-  },
-  headerText: {
-    fontWeight: '600',
-    fontSize: 30,
-  },
   headerIcons1: {
     position: 'absolute',
     top: 60,

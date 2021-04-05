@@ -30,7 +30,15 @@ export default function GiftPage() {
           tabStyle={{ backgroundColor: 'white' }}
           activeTabStyle={{ backgroundColor: 'white' }}>
           <View>
-            <Text>Good</Text>
+            <Text
+              style={{
+                textAlign: 'center',
+                marginTop: 250,
+                fontSize: 22,
+                fontWeight: '600',
+              }}>
+              🚧 공사중... 🚧
+            </Text>
           </View>
         </Tab>
         <Tab
@@ -40,7 +48,15 @@ export default function GiftPage() {
           tabStyle={{ backgroundColor: 'white' }}
           activeTabStyle={{ backgroundColor: 'white' }}>
           <View>
-            <Text>Good2</Text>
+            <Text
+              style={{
+                textAlign: 'center',
+                marginTop: 250,
+                fontSize: 22,
+                fontWeight: '600',
+              }}>
+              🚧 공사중... 🚧
+            </Text>
           </View>
         </Tab>
         <Tab
@@ -50,7 +66,15 @@ export default function GiftPage() {
           tabStyle={{ backgroundColor: 'white' }}
           activeTabStyle={{ backgroundColor: 'white' }}>
           <View>
-            <Text>Good3</Text>
+            <Text
+              style={{
+                textAlign: 'center',
+                marginTop: 250,
+                fontSize: 22,
+                fontWeight: '600',
+              }}>
+              🚧 공사중... 🚧
+            </Text>
           </View>
         </Tab>
       </Tabs>
