@@ -1,24 +1,21 @@
+import { name } from "faker";
 import React from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
 import data from "../data.json";
-import ad2 from "../assets/ad2.jpg";
 
-export default function newMenu(Image) {
+console.log(data.menu);
+
+export default function NewMenu(content) {
   return (
-    <View style={styles.container}>
-      <Image source={ad2} style={style.img}></Image>
+    <View style={styles.card}>
+      <Image style={styles.cardImage} source={{ uri: content.image }} />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  img: {
-    borderRadius: 10,
-    height: "100%",
-    width: "100%",
+  card: {},
+  cardImage: {
     resizeMode: "repeat",
   },
 });

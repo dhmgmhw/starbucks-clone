@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   View,
@@ -23,15 +23,27 @@ import homead from "../assets/homead.png";
 import ad2 from "../assets/ad2.jpg";
 import ad3 from "../assets/ad3.jpg";
 import ad4 from "../assets/ad4.jpg";
-import { useEffect } from "react";
+
 import axios from "axios";
-import { image, name } from "faker";
-import newMenu from "../components/newMenu";
+import data from "../data.json";
+import NewMenu from "../components/NewMenu";
 
 export default function HomePage() {
-  const result = axios.get("http://3.36.65.84/menu").then(function (response) {
-    console.log(response.data.result);
-  });
+  // const result = axios.get("http://3.36.65.84/menu").then(function (response) {
+  //   console.log(response.data.result);
+  // });
+
+  // const [data, setData] = useState([]);
+  // const readyData = async () => {
+  //   const data = await getData();
+  //   setData(data);
+  // };
+
+  // useEffect(() => {
+  //   readyData();
+  // }, []);
+
+  let menu = data.menu;
 
   return (
     <Container style={styles.container}>
@@ -101,14 +113,15 @@ export default function HomePage() {
           />
         </TouchableOpacity>
 
-        {/* 가로스크롤 newMenu */}
+        {/* ###################가로스크롤 NewMenu ###################*/}
         <ScrollView
           horizontal={true}
           style={styles.newMenu}
           showsHorizontalScrollIndicator={false}>
-          <Text>newmenu</Text>
-          <View style={styles.container}>
-            <Image source={ad2}></Image>
+          <View style={styles.menuContainer}>
+            {menu.map((content, i) => {
+              return <NewMenu content={content} key={i} />;
+            })}
           </View>
         </ScrollView>
 
@@ -215,12 +228,8 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
   },
-  newMenu: {
-    paddingTop: 30,
-    paddingBottom: 30,
-    padding: 20,
-    height: 200,
-  },
+  newMenu: {},
+  menuContainer: {},
   Add2box: {
     margin: 20,
     marginBottom: 5,
