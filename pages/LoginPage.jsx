@@ -7,10 +7,10 @@ import {
   Dimensions,
 } from 'react-native';
 import { Container, Content, Text, Form, Button } from 'native-base';
-import ItemInput from '../components/ItemInput';
 import { StatusBar } from 'expo-status-bar';
+import { login } from '../config/BackData';
+import ItemInput from '../components/ItemInput';
 import HeaderComponent from '../components/HeaderComponent';
-import { signIn } from '../config/BackData';
 
 const diviceWidth = Dimensions.get('window').width;
 
@@ -59,7 +59,7 @@ export default function LoginPage({ navigation }) {
     } else {
       setPasswordError('');
     }
-    signIn(id, password, navigation);
+    login(id, password, navigation);
   };
   const setIdFunc = (itemInputId) => {
     setId(itemInputId);

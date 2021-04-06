@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { StyleSheet, Dimensions, Image, Alert } from 'react-native';
 import { Container, Content, Text, Form, Button } from 'native-base';
 import ItemInput from '../components/ItemInput';
+import { register } from '../config/BackData';
 
 const diviceWidth = Dimensions.get('window').width;
 
@@ -53,7 +54,7 @@ export default function SignUpPage() {
     } else {
       setNickNameError('');
     }
-    registration(id, password, nickName);
+    register(id, password, nickName);
   };
 
   return (
