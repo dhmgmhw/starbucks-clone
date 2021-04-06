@@ -7,8 +7,9 @@ import {
   Dimensions,
 } from 'react-native';
 import { Container, Content, Text, Form, Button } from 'native-base';
-import ItemInput from '../components/ItemInput';
 import { StatusBar } from 'expo-status-bar';
+import { login } from '../config/BackData';
+import ItemInput from '../components/ItemInput';
 import HeaderComponent from '../components/HeaderComponent';
 
 const diviceWidth = Dimensions.get('window').width;
@@ -16,10 +17,10 @@ const diviceWidth = Dimensions.get('window').width;
 export default function LoginPage({ navigation }) {
   const [ready, setReady] = useState(false);
 
-  const [email, setEmail] = useState('');
+  const [id, setId] = useState('');
   const [password, setPassword] = useState('');
 
-  const [emailError, setEmailError] = useState('');
+  const [idError, setIdError] = useState('');
   const [passwordError, setPasswordError] = useState('');
 
   useEffect(() => {
@@ -43,26 +44,25 @@ export default function LoginPage({ navigation }) {
 
   const doSignIn = () => {
     //   나중에 Alert 대신 모달창으로 디자인해보자
-    if (email == '') {
-      setEmailError('');
+    if (id == '') {
+      setIdError('');
       Alert.alert('아이디를 입력해주세요');
       return false;
     } else {
-      setEmailError('');
+      setIdError('');
     }
 
     if (password == '') {
       setPasswordError('');
-      Alert.alert('아이디를 입력해주세요');
+      Alert.alert('비밀번호를 입력해주세요');
       return false;
     } else {
       setPasswordError('');
     }
-
-    signIn(email, password, navigation);
+    login(id, password, navigation);
   };
-  const setEmailFunc = (itemInputEmail) => {
-    setEmail(itemInputEmail);
+  const setIdFunc = (itemInputId) => {
+    setId(itemInputId);
   };
   const setPasswordFunc = (itemInputPassword) => {
     setPassword(itemInputPassword);
@@ -90,8 +90,8 @@ export default function LoginPage({ navigation }) {
           <ItemInput
             title={'아이디'}
             type={'아이디'}
-            setFunc={setEmailFunc}
-            error={emailError}
+            setFunc={setIdFunc}
+            error={idError}
           />
           <ItemInput
             title={'비밀번호'}

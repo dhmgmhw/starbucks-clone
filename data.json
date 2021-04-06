@@ -54,5 +54,49 @@
             "eng_name": "Others",
             "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/03/[9200000003430]_20210324170218398.jpg"
         }
+    ],
+    "cake": [
+        {
+            "price": "23,900원",
+            "name": "피칸 브라우니",
+            "eng_name": "Pecan Brownie",
+            "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2019/06/[9300000002173]_20190612150600937.jpg"
+        },
+        {
+            "price": "25,000원",
+            "name": "크레이프 에멘탈 치즈 케이크",
+            "eng_name": "Crepe Emmental Cheese Cake",
+            "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2019/04/[9300000002064]_20190412135005999.jpg"
+        },
+        {
+            "price": "25,000원",
+            "name": "세븐 레이어 가나슈 케이크",
+            "eng_name": "Seven Layer Ganache Cake",
+            "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2019/04/[9300000002065]_20190412135121406.jpg"
+        },
+        {
+            "price": "38,000원",
+            "name": "청담스타 얼 그레이 밀크 케이크",
+            "eng_name": "Cheongdam Star Earl Grey Milk Cake",
+            "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2018/04/[9300000001521]_20180419160443788.jpg"
+        },
+        {
+            "price": "38,000원",
+            "name": "청담스타 오 허니 케이크",
+            "eng_name": "Cheongdam Star Oh Honey Cake",
+            "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2017/04/[9300000000882]_20170425213905124.jpg"
+        },
+        {
+            "price": "39,000원",
+            "name": "헤븐리 티라미수",
+            "eng_name": "Heavenly Tiramisu",
+            "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2017/04/[9300000000878]_20170425213107826.jpg"
+        },
+        {
+            "price": "41,000원",
+            "name": "블루베리 쿠키 치즈 케이크",
+            "eng_name": "Blueberry Cookie Cheese Cake",
+            "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2018/04/[9300000000913]_20180430162431754.jpg"
+        }
     ]
-  }
+}
