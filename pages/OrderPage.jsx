@@ -4,7 +4,7 @@ import { StyleSheet, Text, ScrollView, Image, Dimensions } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import HeaderComponent from '../components/HeaderComponent';
 import NoMymenuCard from '../components/NoMymenuCard';
-import { getData } from '../config/BackData';
+import { getCateData } from '../config/BackData';
 import data from '../data.json';
 const diviceWidth = Dimensions.get('window').width;
 import CateComponent from '../components/CateComponent';
@@ -19,7 +19,7 @@ export default function OrderPage({ navigation }) {
   }, []);
 
   const download = async () => {
-    const result = await getData();
+    const result = await getCateData();
 
     setCategories(result);
   };

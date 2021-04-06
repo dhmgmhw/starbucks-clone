@@ -1,7 +1,7 @@
 import React from 'react';
-import { StyleSheet, View, Text, Alert, Touchable } from 'react-native';
+import { StyleSheet, Text } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { Col, Row, Grid } from 'react-native-easy-grid';
+import { Col, Grid } from 'react-native-easy-grid';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 export default function OtherItemCard({ icon, subHeader }) {

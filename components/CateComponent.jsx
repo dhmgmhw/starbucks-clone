@@ -6,7 +6,7 @@ import {
   TouchableOpacity,
   Image,
 } from 'react-native';
-import { Col, Row, Grid } from 'react-native-easy-grid';
+import { Col, Grid } from 'react-native-easy-grid';
 
 const diviceWidth = Dimensions.get('window').width;
 
@@ -21,7 +21,7 @@ export default function CateComponent({ navigation, category }) {
           <Image
             style={styles.cardImage}
             resizeMode='cover'
-            source={{ uri: category.img_url }}
+            source={{ uri: category.image }}
           />
         </Col>
         <Col size={2} style={styles.cardText}>
