@@ -17,13 +17,21 @@ export async function getCateData() {
 
 
 //오더페이지>카테코리>세부카테고리 - 형인
-export async function getCateDetailData() {
+export async function getCateDetailData(id) {
     try {
-        const result = await axios.get(host + '/menu/drink/categories/606c13eadbd54522e7c47544');
-                                                        // {_id}
-        return result.data.result
+        console.log(id)
+        // const result = await axios.get(host + '/menu/drink/categories/606c13eadbd54522e7c47544');
+        // const result = await axios.get(host + '/menu/drink/categories/' + id);
+
+        const response = await axios({
+            method: 'get',
+            url: host + '/menu/drink/categories/' + id,
+          });
+
+        console.log(response.data.result)
+        return response.data.result
     } catch (err) {
-        Alert.alert('카테고리를 불러올 수 없습니다 :(');
+        Alert.alert(err);
     }
 }
 

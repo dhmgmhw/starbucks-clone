@@ -16,7 +16,8 @@ export default function CateComponent({ navigation, category }) {
   return (
     <TouchableOpacity
       onPress={() => {
-        navigation.navigate("CateDetailPage", category.name);
+        // console.log(category._id);
+        navigation.navigate("CateDetailPage", category._id);
       }}>
       <Grid style={styles.cate}>
         <Col size={1}>
