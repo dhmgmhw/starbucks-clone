@@ -42,6 +42,7 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     alignSelf: "center",
+    paddingRight: 30,
   },
   cardImage: {
     height: 130,
@@ -57,7 +58,6 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     marginBottom: 5,
     textAlign: "center",
-
     // marginLeft: 10,
     // marginRight: 10,
   },

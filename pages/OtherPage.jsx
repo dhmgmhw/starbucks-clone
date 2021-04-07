@@ -1,20 +1,19 @@
 import React from 'react';
-import { StyleSheet, View, Text } from 'react-native';
-import { ScrollView, TouchableOpacity } from 'react-native-gesture-handler';
-import OtherItemCard from '../components/OtherItemCard';
+import { StyleSheet, View, Text, TouchableOpacity, Alert } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 import { Ionicons } from '@expo/vector-icons';
+import OtherItemCard from '../components/OtherItemCard';
 import OtherHeaderComponent from '../components/OtherHeaderComponent';
 
-export default function OtherPage() {
+export default function OtherPage({ navigation }) {
   return (
     <View style={styles.container}>
       <OtherHeaderComponent headerTitle='Other' />
-      <Ionicons
+      <TouchableOpacity
         style={styles.headerIcons}
-        name={'settings-outline'}
-        color={'grey'}
-        size={20}
-      />
+        onPress={() => navigation.navigate('LogoutPage')}>
+        <Ionicons name={'settings-outline'} color={'grey'} size={20} />
+      </TouchableOpacity>
       <ScrollView showsScrollIndicator={false} style={styles.mainContainer}>
         <View>
           <Text style={styles.subHeader}>서비스</Text>
