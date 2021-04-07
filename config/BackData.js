@@ -14,10 +14,13 @@ export async function getCateData() {
         Alert.alert('카테고리를 불러올 수 없습니다 :(');
     }
 }
+
+
 //오더페이지>카테코리>세부카테고리 - 형인
 export async function getCateDetailData() {
     try {
         const result = await axios.get(host + '/menu/drink/categories/606c13eadbd54522e7c47544');
+                                                        // {_id}
         return result.data.result
     } catch (err) {
         Alert.alert('카테고리를 불러올 수 없습니다 :(');
@@ -27,14 +30,11 @@ export async function getCateDetailData() {
 // 홈페이지-형인
 export async function getNewMenuData() {
     try {
-<<<<<<< HEAD
 
         const result = await axios.get(host + '/menu/new_menu');
 
-=======
-        const result = await axios.get(host + '/menu/new_menu');
->>>>>>> 504a1615a7330b36e252e01fc4062ca13458841f
         return result.data.result
+
     } catch (err) {
         Alert.alert('잘못된 정보 :(');
     }
@@ -74,7 +74,6 @@ export async function logout(navigation) {
         console.log('로그아웃을 시도합니다..');
         console.log(AsyncStorage)
         AsyncStorage.clear()
-        Alert.alert('로그인페이지로 돌아갑니다.');
         navigation.push('LoginPage');
     } catch (err) {
         Alert.alert('너는 벗어날 수 없어 ', err.message);
