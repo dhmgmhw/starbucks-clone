@@ -21,6 +21,7 @@ import coffee from "../assets/coffee.png";
 export default function DetailPage() {
   return (
     <ScrollView style={{ backgroundColor: "white" }}>
+      {/* image */}
       <View style={styles.imgbox}>
         <Image source={coffee} style={styles.img} />
       </View>

@@ -14,21 +14,21 @@ export async function getCateData() {
         Alert.alert('카테고리를 불러올 수 없습니다 :(');
     }
 }
+//오더페이지>카테코리>세부카테고리 - 형인
+export async function getCateDetailData() {
+    try {
+        const result = await axios.get(host + '/menu/drink/categories/606c13eadbd54522e7c47544');
+        return result.data.result
+    } catch (err) {
+        Alert.alert('카테고리를 불러올 수 없습니다 :(');
+    }
+}
 
 // 홈페이지-형인
 export async function getNewMenuData() {
     try {
-        // const result = await axios({
-        //     method: 'get',
-        //     url: host + '/menu',
-        // });
 
         const result = await axios.get(host + '/menu/new_menu');
-
-        // console.log(result)
-        // console.log(result.data)
-        // console.log(result.data.result)
-        // console.log(result.data.result[1].name)
 
         return result.data.result
 

@@ -8,15 +8,13 @@ import {
 } from "react-native";
 import { Col, Grid } from "react-native-easy-grid";
 
-import CateDetailPage from "../pages/CateDetailPage";
-
 const diviceWidth = Dimensions.get("window").width;
 
-export default function CateComponent({ navigation, category }) {
+export default function CateDetailComponent({ navigation, category }) {
   return (
     <TouchableOpacity
       onPress={() => {
-        navigation.navigate("CateDetailPage", category.name);
+        navigation.navigate("DetailPage", category.name);
       }}>
       <Grid style={styles.cate}>
         <Col size={1}>
@@ -29,6 +27,8 @@ export default function CateComponent({ navigation, category }) {
         <Col size={2} style={styles.cardText}>
           <Text style={styles.cardTitle}>{category.name}</Text>
           <Text style={styles.cardEnTitle}>{category.eng_name}</Text>
+          {/* price에 , 추가하기 ex)6100 => 6,100 */}
+          <Text style={styles.cardPrice}>{category.price}원</Text>
         </Col>
       </Grid>
     </TouchableOpacity>
@@ -59,5 +59,9 @@ const styles = StyleSheet.create({
     fontSize: 13,
     color: "lightgrey",
     fontWeight: "500",
+  },
+  cardPrice: {
+    marginTop: 10,
+    fontWeight: "bold",
   },
 });
