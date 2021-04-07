@@ -11,6 +11,7 @@ import { StatusBar } from 'expo-status-bar';
 import { login } from '../config/BackData';
 import ItemInput from '../components/ItemInput';
 import HeaderComponent from '../components/HeaderComponent';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const diviceWidth = Dimensions.get('window').width;
 
@@ -76,43 +77,46 @@ export default function LoginPage({ navigation }) {
     <Container style={styles.container}>
       <StatusBar style='black' />
       <HeaderComponent headerTitle='로그인' />
-      <Content contentContainerStyle={styles.content} scrollEnabled={false}>
-        <Image
-          style={styles.logo}
-          resizeMode='contain'
-          source={require('../assets/logo.png')}
-        />
-        <Text style={styles.title}>안녕하세요.{'\n'}스타벅스입니다.</Text>
-        <Text style={styles.subTitle}>
-          {'\n'}회원 서비스 이용을 위해 로그인 해주세요.
-        </Text>
-        <Form style={styles.form}>
-          <ItemInput
-            title={'아이디'}
-            type={'아이디'}
-            setFunc={setIdFunc}
-            error={idError}
+      <ScrollView>
+        <Content contentContainerStyle={styles.content} scrollEnabled={false}>
+          <Image
+            style={styles.logo}
+            resizeMode='contain'
+            source={require('../assets/logo.png')}
           />
-          <ItemInput
-            title={'비밀번호'}
-            type={'password'}
-            setFunc={setPasswordFunc}
-            error={passwordError}
-          />
-        </Form>
-        <Button full style={styles.signInBtn} onPress={goSignUp}>
-          <Text style={styles.signInBtnText}>회원가입</Text>
+          <Text style={styles.title}>안녕하세요.{'\n'}스타벅스입니다.</Text>
+          <Text style={styles.subTitle}>
+            {'\n'}회원 서비스 이용을 위해 로그인 해주세요.
+          </Text>
+          <Form style={styles.form}>
+            <ItemInput
+              title={'아이디'}
+              type={'아이디'}
+              setFunc={setIdFunc}
+              error={idError}
+            />
+            <ItemInput
+              title={'비밀번호'}
+              type={'password'}
+              setFunc={setPasswordFunc}
+              error={passwordError}
+            />
+          </Form>
+          <Button full style={styles.signInBtn} onPress={goSignUp}>
+            <Text style={styles.signInBtnText}>회원가입</Text>
+          </Button>
+        </Content>
+        <Button full style={styles.loginBtn} onPress={doLogin}>
+          <Text>로그인하기</Text>
         </Button>
-      </Content>
-      <Button full style={styles.loginBtn} onPress={doLogin}>
-        <Text>로그인하기</Text>
-      </Button>
+      </ScrollView>
     </Container>
   );
 }
 
 const styles = StyleSheet.create({
   logo: {
+    marginTop: 100,
     height: 100,
     marginBottom: 30,
     alignSelf: 'center',

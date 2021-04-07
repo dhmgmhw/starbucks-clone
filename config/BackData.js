@@ -24,8 +24,8 @@ export async function register(id, password, nickName) {
         });
         Alert.alert('환영합니다, ' + nickName + ' :)');
     } catch (err) {
-        const error = err.response.data
-        Alert.alert(error);
+        console.log(err);
+        Alert.alert('아이디를 확인해주세요');
     }
 }
 
@@ -41,7 +41,6 @@ export async function login(id, password, navigation) {
             console.log(error);
             Alert.alert('아이디를 확인해주세요');
         });
-
 }
 
 export async function logout(navigation) {

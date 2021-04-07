@@ -3,6 +3,7 @@ import { StyleSheet, Dimensions, Image, Alert } from 'react-native';
 import { Container, Content, Text, Form, Button } from 'native-base';
 import ItemInput from '../components/ItemInput';
 import { register } from '../config/BackData';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const diviceWidth = Dimensions.get('window').width;
 
@@ -59,13 +60,12 @@ export default function SignUpPage({ navigation }) {
   };
 
   return (
-    <Container style={styles.container}>
+    <ScrollView style={styles.container}>
       <Image
         style={styles.logo}
         resizeMode='contain'
         source={require('../assets/logo.png')}
       />
-
       <Content contentContainerStyle={styles.content} scrollEnabled={false}>
         <Text style={styles.idTitle}>
           아이디와 비밀번호를{'\n'}입력해주세요.
@@ -111,7 +111,7 @@ export default function SignUpPage({ navigation }) {
       <Button full style={styles.signUpBtn} onPress={doSignUp}>
         <Text>회원가입</Text>
       </Button>
-    </Container>
+    </ScrollView>
   );
 }
 
@@ -122,7 +122,6 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     alignSelf: 'center',
   },
-
   content: {
     flex: 1,
     justifyContent: 'center',
@@ -130,6 +129,7 @@ const styles = StyleSheet.create({
     bottom: 40,
   },
   idTitle: {
+    marginTop: 30,
     paddingLeft: 20,
     fontSize: 25,
     fontWeight: '700',
