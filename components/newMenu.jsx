@@ -37,10 +37,10 @@ const styles = StyleSheet.create({
     height: 180,
     width: 100,
     width: diviceWidth * 0.38,
-    alignSelf: 'center',
     marginVertical: 15,
     flex: 1,
     alignItems: 'center',
+    alignSelf: 'center',
   },
   cardImage: {
     height: 130,
@@ -48,9 +48,15 @@ const styles = StyleSheet.create({
     borderRadius: 100,
   },
   cardTitle: {
-    fontSize: 19,
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    fontSize: 13,
     fontWeight: '500',
     marginBottom: 5,
+    // marginLeft: 10,
+    // marginRight: 10,
   },
   cardEnTitle: {
     fontSize: 13,

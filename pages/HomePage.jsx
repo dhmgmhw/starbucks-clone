@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   View,
@@ -10,53 +10,52 @@ import {
   ScrollViewComponent,
   ScrollView,
   Dimensions,
-} from 'react-native';
-import { StatusBar } from 'expo-status-bar';
-import { Container } from 'native-base';
+} from "react-native";
+import { StatusBar } from "expo-status-bar";
+import { Container } from "native-base";
 
-import { FontAwesome } from '@expo/vector-icons';
-import { SimpleLineIcons } from '@expo/vector-icons';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { EvilIcons } from '@expo/vector-icons';
-import { Fontisto } from '@expo/vector-icons';
+import { FontAwesome } from "@expo/vector-icons";
+import { SimpleLineIcons } from "@expo/vector-icons";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { EvilIcons } from "@expo/vector-icons";
+import { Fontisto } from "@expo/vector-icons";
 
-import homead from '../assets/homead.png';
-import ad2 from '../assets/ad2.jpg';
-import ad3 from '../assets/ad3.jpg';
-import ad4 from '../assets/ad4.jpg';
+import homead from "../assets/homead.png";
+import ad2 from "../assets/ad2.jpg";
+import ad3 from "../assets/ad3.jpg";
+import ad4 from "../assets/ad4.jpg";
 
-import axios from 'axios';
-import data from '../data.json';
-const diviceWidth = Dimensions.get('window').width;
-import NewMenu from '../components/NewMenu';
+import axios from "axios";
+import data from "../data.json";
+const diviceWidth = Dimensions.get("window").width;
 
-export default function HomePage() {
-  // const result = axios.get("http://3.36.65.84/menu").then(function (response) {
-  //   console.log(response.data.result);
-  // });
+import NewMenu from "../components/NewMenu";
 
-  // const [data, setData] = useState([]);
-  // const readyData = async () => {
-  //   const data = await getData();
-  //   setData(data);
-  // };
+import { getNewMenuData } from "../config/BackData";
 
-  // useEffect(() => {
-  //   readyData();
-  // }, []);
+export default function HomePage({ navigation }) {
+  const [categories, setCategories] = useState(data.result);
 
-  let categories = data.result;
+  useEffect(() => {
+    download();
+  }, []);
+
+  const download = async () => {
+    const result = await getNewMenuData();
+
+    setCategories(result);
+  };
 
   return (
     <Container style={styles.container}>
       <ScrollView>
-        <StatusBar style='black' />
+        <StatusBar style="black" />
 
         {/* Animated Header안에 들어갈 랜덤으로 바뀌는 인삿말 */}
         <View style={styles.TopMessage}>
           <Text style={styles.toptext}>
-            고객님~{'\n'}반갑습니다!
-            <Fontisto name='coffeescript' size={24} color='green' />
+            고객님~{"\n"}반갑습니다!
+            <Fontisto name="coffeescript" size={24} color="green" />
             {/* <FontAwesome name="coffee" size={24} color="green" /> */}
           </Text>
         </View>
@@ -64,34 +63,34 @@ export default function HomePage() {
         {/* 추후에 AnimatedHeader안에 들어갈 카드등록 기능을 가진 cardcomponent */}
         <View style={styles.makecard}>
           <Text style={styles.cardtext}>
-            스타벅스 카드를 등록하시고{'\n'}
-            <Text style={{ color: 'green', fontWeight: 'bold' }}>
+            스타벅스 카드를 등록하시고{"\n"}
+            <Text style={{ color: "green", fontWeight: "bold" }}>
               스타벅스 리워드
             </Text>
-            회원의{'\n'}다양한 혜택을 누리세요!
+            회원의{"\n"}다양한 혜택을 누리세요!
           </Text>
           <TouchableOpacity style={styles.cardbutton}>
-            <Text style={{ color: 'white', fontSize: 18 }}>카드등록</Text>
+            <Text style={{ color: "white", fontSize: 18 }}>카드등록</Text>
           </TouchableOpacity>
         </View>
 
         {/* 최후에 헤더로 고정될 버튼 모음 */}
         <View style={styles.lastheaderbutton}>
           <TouchableOpacity
-            style={{ flex: 1, flexDirection: 'row', marginRight: 15 }}>
+            style={{ flex: 1, flexDirection: "row", marginRight: 15 }}>
             <SimpleLineIcons
-              name='envelope-letter'
+              name="envelope-letter"
               size={20}
-              color='black'
+              color="black"
               style={{ marginRight: 7 }}
             />
             <Text style={{ fontSize: 15 }}>What's New</Text>
           </TouchableOpacity>
-          <TouchableOpacity style={{ flex: 1, flexDirection: 'row' }}>
+          <TouchableOpacity style={{ flex: 1, flexDirection: "row" }}>
             <MaterialCommunityIcons
-              name='ticket-confirmation-outline'
+              name="ticket-confirmation-outline"
               size={24}
-              color='black'
+              color="black"
               style={{ marginRight: 7 }}
             />
             <Text style={{ fontSize: 15 }}>Coupon</Text>
@@ -99,11 +98,11 @@ export default function HomePage() {
           <TouchableOpacity
             style={{
               flex: 1,
-              flexDirection: 'row',
-              justifyContent: 'flex-end',
+              flexDirection: "row",
+              justifyContent: "flex-end",
               paddingRight: 23,
             }}>
-            <EvilIcons name='bell' size={28} color='black' />
+            <EvilIcons name="bell" size={28} color="black" />
           </TouchableOpacity>
         </View>
 
@@ -111,19 +110,19 @@ export default function HomePage() {
         <TouchableOpacity style={styles.Addbox}>
           <Image
             source={homead}
-            style={{ height: '100%', width: '100%', resizeMode: 'cover' }}
+            style={{ height: "100%", width: "100%", resizeMode: "cover" }}
           />
         </TouchableOpacity>
 
         <View
           style={{
             flex: 1,
-            flexDirection: 'row',
+            flexDirection: "row",
           }}>
           <Text
             style={{
               fontSize: 23,
-              fontWeight: 'bold',
+              fontWeight: "bold",
               padding: 20,
             }}>
             새로 나온 메뉴
@@ -139,15 +138,15 @@ export default function HomePage() {
           })}
         </ScrollView>
 
-        <View
+        {/* <View
           style={{
             flex: 1,
-            flexDirection: 'row',
+            flexDirection: "row",
           }}>
           <Text
             style={{
               fontSize: 23,
-              fontWeight: 'bold',
+              fontWeight: "bold",
               padding: 20,
             }}>
             이 시간대 인기 메뉴
@@ -155,14 +154,14 @@ export default function HomePage() {
           <Text
             style={{
               fontSize: 13,
-              color: 'grey',
+              color: "grey",
               margin: 20,
               marginLeft: 30,
             }}>
             주중 오후 7시 기준
           </Text>
         </View>
-        {/* ###################가로스크롤 NewMenu ###################*/}
+        ###################가로스크롤 NewMenu ###################
         <ScrollView
           horizontal={true}
           style={styles.newMenu}
@@ -170,25 +169,25 @@ export default function HomePage() {
           {categories.map((category, i) => {
             return <NewMenu category={category} key={i} />;
           })}
-        </ScrollView>
+        </ScrollView> */}
 
         {/* 광고들, 마찬가치로 event페이지로 navigate */}
         <TouchableOpacity style={styles.Add2box}>
           <Image
             source={ad2}
-            style={{ height: '100%', width: '100%', resizeMode: 'cover' }}
+            style={{ height: "100%", width: "100%", resizeMode: "cover" }}
           />
         </TouchableOpacity>
         <TouchableOpacity style={styles.Add3box}>
           <Image
             source={ad3}
-            style={{ height: '100%', width: '100%', resizeMode: 'cover' }}
+            style={{ height: "100%", width: "100%", resizeMode: "cover" }}
           />
         </TouchableOpacity>
         <TouchableOpacity style={styles.Add4box}>
           <Image
             source={ad4}
-            style={{ height: '100%', width: '100%', resizeMode: 'cover' }}
+            style={{ height: "100%", width: "100%", resizeMode: "cover" }}
           />
         </TouchableOpacity>
       </ScrollView>
@@ -200,8 +199,8 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     paddingTop: 100,
-    backgroundColor: '#fff',
-    shadowColor: 'black',
+    backgroundColor: "#fff",
+    shadowColor: "black",
     shadowOffset: {
       width: 10,
       height: 10,
@@ -216,7 +215,7 @@ const styles = StyleSheet.create({
   },
   toptext: {
     fontSize: 30,
-    fontWeight: '700',
+    fontWeight: "700",
   },
   makecard: {
     padding: 25,
@@ -225,11 +224,11 @@ const styles = StyleSheet.create({
     margin: 20,
     marginBottom: 5,
     marginTop: 5,
-    borderBottomColor: 'black',
-    width: '90%',
+    borderBottomColor: "black",
+    width: "90%",
     height: 200,
-    backgroundColor: 'white',
-    shadowColor: '#000',
+    backgroundColor: "white",
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 2,
@@ -246,15 +245,15 @@ const styles = StyleSheet.create({
   },
   cardbutton: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'green',
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: "green",
     width: 100,
     borderRadius: 40,
   },
   lastheaderbutton: {
     flex: 1,
-    flexDirection: 'row',
+    flexDirection: "row",
     marginTop: 20,
     marginLeft: 30,
     marginBottom: 40,
@@ -263,10 +262,10 @@ const styles = StyleSheet.create({
     margin: 20,
     marginBottom: 5,
     marginTop: 5,
-    borderBottomColor: 'black',
+    borderBottomColor: "black",
     height: 430,
-    backgroundColor: 'white',
-    shadowColor: '#000',
+    backgroundColor: "white",
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 2,
@@ -283,10 +282,10 @@ const styles = StyleSheet.create({
     margin: 20,
     marginBottom: 5,
     marginTop: 5,
-    borderBottomColor: 'black',
+    borderBottomColor: "black",
     height: 300,
-    backgroundColor: 'white',
-    shadowColor: '#000',
+    backgroundColor: "white",
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 2,
@@ -299,10 +298,10 @@ const styles = StyleSheet.create({
     margin: 20,
     marginBottom: 5,
     marginTop: 5,
-    borderBottomColor: 'black',
+    borderBottomColor: "black",
     height: 200,
-    backgroundColor: 'white',
-    shadowColor: '#000',
+    backgroundColor: "white",
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 2,
@@ -315,10 +314,10 @@ const styles = StyleSheet.create({
     margin: 20,
     marginBottom: 5,
     marginTop: 5,
-    borderBottomColor: 'black',
+    borderBottomColor: "black",
     height: 450,
-    backgroundColor: 'white',
-    shadowColor: '#000',
+    backgroundColor: "white",
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 2,

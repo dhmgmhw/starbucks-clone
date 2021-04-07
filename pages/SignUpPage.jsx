@@ -131,6 +131,7 @@ const styles = StyleSheet.create({
   idTitle: {
     marginTop: 30,
     paddingLeft: 20,
+    marginTop: 30,
     fontSize: 25,
     fontWeight: '700',
   },
