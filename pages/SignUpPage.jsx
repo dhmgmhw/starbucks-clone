@@ -6,7 +6,7 @@ import { register } from '../config/BackData';
 
 const diviceWidth = Dimensions.get('window').width;
 
-export default function SignUpPage() {
+export default function SignUpPage({ navigation }) {
   const [id, setId] = useState('');
   const [idError, setIdError] = useState('');
 
@@ -55,6 +55,7 @@ export default function SignUpPage() {
       setNickNameError('');
     }
     register(id, password, nickName);
+    navigation.goBack();
   };
 
   return (
