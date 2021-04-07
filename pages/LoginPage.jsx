@@ -6,7 +6,7 @@ import {
   Image,
   Dimensions,
 } from 'react-native';
-import { Container, Content, Text, Form, Button } from 'native-base';
+import { Container, Content, Text, Form, Button, Footer } from 'native-base';
 import { StatusBar } from 'expo-status-bar';
 import { login } from '../config/BackData';
 import ItemInput from '../components/ItemInput';
@@ -106,10 +106,12 @@ export default function LoginPage({ navigation }) {
             <Text style={styles.signInBtnText}>회원가입</Text>
           </Button>
         </Content>
+      </ScrollView>
+      <Footer style={styles.footer}>
         <Button full style={styles.loginBtn} onPress={doLogin}>
           <Text>로그인하기</Text>
         </Button>
-      </ScrollView>
+      </Footer>
     </Container>
   );
 }
@@ -160,5 +162,9 @@ const styles = StyleSheet.create({
   signInBtnText: {
     color: 'black',
     fontSize: 14,
+  },
+  footer: {
+    borderTopWidth: 0,
+    backgroundColor: 'white',
   },
 });

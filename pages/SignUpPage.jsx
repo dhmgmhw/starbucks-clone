@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { StyleSheet, Dimensions, Image, Alert } from 'react-native';
-import { Container, Content, Text, Form, Button } from 'native-base';
+import { Footer, Content, Text, Form, Button } from 'native-base';
 import ItemInput from '../components/ItemInput';
 import { register } from '../config/BackData';
 import { ScrollView } from 'react-native-gesture-handler';
@@ -60,62 +60,69 @@ export default function SignUpPage({ navigation }) {
   };
 
   return (
-    <ScrollView style={styles.container}>
-      <Image
-        style={styles.logo}
-        resizeMode='contain'
-        source={require('../assets/logo.png')}
-      />
-      <Content contentContainerStyle={styles.content} scrollEnabled={false}>
-        <Text style={styles.idTitle}>
-          아이디와 비밀번호를{'\n'}입력해주세요.
-        </Text>
-        <Form style={styles.form}>
-          <ItemInput
-            title={'아이디 (4~13자리 이내)'}
-            type={'id'}
-            error={idError}
-            setFunc={setId}
-          />
-          <ItemInput
-            title={'비밀번호 (10~29자리 이내)'}
-            type={'password'}
-            error={passwordError}
-            setFunc={setPassword}
-          />
-          <ItemInput
-            title={'비밀번호 확인'}
-            type={'password'}
-            error={passwordConfirmError}
-            setFunc={setPasswordConfirm}
-          />
-        </Form>
-        <Text style={styles.emailTitle}>닉네임을{'\n'}입력해주세요.</Text>
-        <Form style={styles.form}>
-          <ItemInput
-            title={'닉네임 (한글 최대 6자)'}
-            type={'nickName'}
-            error={nickNameError}
-            setFunc={setNickName}
-          />
-        </Form>
-        <Text style={styles.info}>
-          {'\u2022'} 주문하신 제품/상품을 찾으실 때, 파트너가 등록하신 닉네임을
-          불러 드립니다.
-        </Text>
-        <Text style={styles.info}>
-          {'\u2022'} 부적절한 닉네임을 신청하는 경우, 신청이 제한되거나 관리자에
-          의해 예고 없이 사용이 제한될 수 있습니다.
-        </Text>
-      </Content>
-      <Button full style={styles.signUpBtn} onPress={doSignUp}>
-        <Text>회원가입</Text>
-      </Button>
-    </ScrollView>
+    <>
+      <ScrollView style={styles.container}>
+        <Image
+          style={styles.logo}
+          resizeMode='contain'
+          source={require('../assets/logo.png')}
+        />
+        <Content contentContainerStyle={styles.content} scrollEnabled={false}>
+          <Text style={styles.idTitle}>
+            아이디와 비밀번호를{'\n'}입력해주세요.
+          </Text>
+          <Form style={styles.form}>
+            <ItemInput
+              title={'아이디 (4~13자리 이내)'}
+              type={'id'}
+              error={idError}
+              setFunc={setId}
+            />
+            <ItemInput
+              title={'비밀번호 (10~29자리 이내)'}
+              type={'password'}
+              error={passwordError}
+              setFunc={setPassword}
+            />
+            <ItemInput
+              title={'비밀번호 확인'}
+              type={'password'}
+              error={passwordConfirmError}
+              setFunc={setPasswordConfirm}
+            />
+          </Form>
+          <Text style={styles.emailTitle}>닉네임을{'\n'}입력해주세요.</Text>
+          <Form style={styles.form}>
+            <ItemInput
+              title={'닉네임 (한글 최대 6자)'}
+              type={'nickName'}
+              error={nickNameError}
+              setFunc={setNickName}
+            />
+          </Form>
+          <Text style={styles.info}>
+            {'\u2022'} 주문하신 제품/상품을 찾으실 때, 파트너가 등록하신
+            닉네임을 불러 드립니다.
+          </Text>
+          <Text style={styles.info}>
+            {'\u2022'} 부적절한 닉네임을 신청하는 경우, 신청이 제한되거나
+            관리자에 의해 예고 없이 사용이 제한될 수 있습니다.
+          </Text>
+        </Content>
+      </ScrollView>
+      <Footer style={styles.footer}>
+        <Button full style={styles.signUpBtn} onPress={doSignUp}>
+          <Text>회원가입</Text>
+        </Button>
+      </Footer>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'white',
+  },
   logo: {
     marginTop: 50,
     height: 40,
@@ -170,5 +177,9 @@ const styles = StyleSheet.create({
   signInBtnText: {
     color: 'black',
     fontSize: 14,
+  },
+  footer: {
+    borderTopWidth: 0,
+    backgroundColor: 'white',
   },
 });

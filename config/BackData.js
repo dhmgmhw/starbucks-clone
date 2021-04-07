@@ -18,20 +18,8 @@ export async function getCateData() {
 // 홈페이지-형인
 export async function getNewMenuData() {
     try {
-        // const result = await axios({
-        //     method: 'get',
-        //     url: host + '/menu',
-        // });
-
         const result = await axios.get(host + '/menu/new_menu');
-
-        // console.log(result)
-        // console.log(result.data)
-        // console.log(result.data.result)
-        // console.log(result.data.result[1].name)
-
         return result.data.result
-
     } catch (err) {
         Alert.alert('잘못된 정보 :(');
     }
@@ -71,6 +59,7 @@ export async function logout(navigation) {
         console.log('로그아웃을 시도합니다..');
         console.log(AsyncStorage)
         AsyncStorage.clear()
+        Alert.alert('로그인페이지로 돌아갑니다.');
         navigation.push('LoginPage');
     } catch (err) {
         Alert.alert('너는 벗어날 수 없어 ', err.message);

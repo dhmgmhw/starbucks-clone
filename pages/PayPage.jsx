@@ -7,14 +7,9 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
-import { logout } from '../config/BackData';
 import HeaderComponent from '../components/HeaderComponent';
 
-export default function PayPage({ navigation }) {
-  const logoutFunc = () => {
-    logout(navigation);
-  };
-
+export default function PayPage() {
   return (
     <ScrollView style={styles.container}>
       <HeaderComponent headerTitle='Pay' />
@@ -33,7 +28,7 @@ export default function PayPage({ navigation }) {
           style={{ borderRightWidth: 1, borderColor: 'lightgrey' }}>
           <Text style={styles.BtnBoxText}>Coupon</Text>
         </TouchableOpacity>
-        <TouchableOpacity onPress={logoutFunc}>
+        <TouchableOpacity>
           <Text style={styles.BtnBoxText}>Gift Item</Text>
         </TouchableOpacity>
       </View>
