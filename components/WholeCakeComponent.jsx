@@ -10,12 +10,9 @@ import { Col, Grid } from 'react-native-easy-grid';
 
 const diviceWidth = Dimensions.get('window').width;
 
-export default function WholeCakeComponent({ navigation, cake }) {
+export default function WholeCakeComponent({ cake }) {
   return (
-    <TouchableOpacity
-      onPress={() => {
-        navigation.navigate('DetailPage', cake.name);
-      }}>
+    <TouchableOpacity>
       <Grid style={styles.cate}>
         <Col size={1}>
           <Image
@@ -59,4 +56,8 @@ const styles = StyleSheet.create({
     color: 'lightgrey',
     fontWeight: '500',
   },
+  cardPrice:{
+    marginTop:10,
+    fontWeight: '600',
+  }
 });

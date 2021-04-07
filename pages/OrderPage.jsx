@@ -7,11 +7,13 @@ import NoMymenuCard from "../components/NoMymenuCard";
 import { getCateData } from "../config/BackData";
 import data from "../data.json";
 import CateComponent from "../components/CateComponent";
+import WholeCakeComponent from "../components/WholeCakeComponent";
+
 
 export default function OrderPage({ navigation }) {
   console.disableYellowBox = true;
-
   const [categories, setCategories] = useState(data.result);
+  const cake = data.cake
 
   useEffect(() => {
     download();
@@ -66,15 +68,14 @@ export default function OrderPage({ navigation }) {
           tabStyle={{ backgroundColor: "#FFFFFF" }}
           activeTabStyle={{ backgroundColor: "#FFFFFF" }}>
           <ScrollView>
-            <Text
-              style={{
-                textAlign: "center",
-                marginTop: 250,
-                fontSize: 22,
-                fontWeight: "600",
-              }}>
-              🚧 공사중... 🚧
-            </Text>
+            {cake.map((cake, i) => {
+              return (
+                <WholeCakeComponent
+                  cake={cake}
+                  key={i}
+                />
+              );
+            })}
           </ScrollView>
         </Tab>
       </Tabs>

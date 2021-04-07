@@ -21,7 +21,7 @@ export default function CateDetailPage({ navigation, route }) {
     setTimeout(() => {
       download();
       setReady(true);
-    }, 1000);
+    });
   }, []);
 
   const download = async () => {

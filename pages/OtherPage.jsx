@@ -4,6 +4,7 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { Ionicons } from '@expo/vector-icons';
 import OtherItemCard from '../components/OtherItemCard';
 import OtherHeaderComponent from '../components/OtherHeaderComponent';
+import { Col, Grid } from 'react-native-easy-grid';
 
 export default function OtherPage({ navigation }) {
   return (
@@ -23,11 +24,19 @@ export default function OtherPage({ navigation }) {
         <OtherItemCard subHeader={'e-기프트 카드'} icon={'card-outline'} />
         <OtherItemCard subHeader={`What's New`} icon={'mail-outline'} />
         <OtherItemCard subHeader={'알림'} icon={'notifications-outline'} />
-        <OtherItemCard
-          subHeader={'히스토리'}
-          icon={'timer-outline'}
-          onPress={Alert.alert('이동할거야')}
-        />
+        <TouchableOpacity onPress={() => navigation.navigate('HistoryPage')}>
+          <Grid style={styles.hisHeader}>
+            <Col size={1}>
+              <Ionicons name={'timer-outline'} color={'grey'} size={25} />
+            </Col>
+            <Col size={7}>
+              <Text style={styles.hisHeaderText}>히스토리</Text>
+            </Col>
+            <Col size={1}>
+              <Ionicons name={'chevron-forward'} color={'grey'} size={25} />
+            </Col>
+          </Grid>
+        </TouchableOpacity>
         <OtherItemCard subHeader={'전자영수증'} icon={'receipt-outline'} />
         <OtherItemCard subHeader={'마이 스타벅스 리뷰'} icon={'cafe-outline'} />
         <View style={styles.border}></View>
@@ -88,5 +97,18 @@ const styles = StyleSheet.create({
   },
   bottomBlock: {
     height: 140,
+  },
+
+  hisHeader: {
+    backgroundColor: 'white',
+    marginLeft: 20,
+    marginRight: 10,
+    marginVertical: 6,
+    padding: 10,
+  },
+  hisHeaderText: {
+    marginLeft: 3,
+    fontSize: 16,
+    paddingTop: 6,
   },
 });
