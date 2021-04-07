@@ -42,7 +42,7 @@ export default function LoginPage({ navigation }) {
     }, 1000);
   }, []);
 
-  const doSignIn = () => {
+  const doLogin = () => {
     //   나중에 Alert 대신 모달창으로 디자인해보자
     if (id == '') {
       setIdError('');
@@ -51,7 +51,6 @@ export default function LoginPage({ navigation }) {
     } else {
       setIdError('');
     }
-
     if (password == '') {
       setPasswordError('');
       Alert.alert('비밀번호를 입력해주세요');
@@ -61,6 +60,7 @@ export default function LoginPage({ navigation }) {
     }
     login(id, password, navigation);
   };
+
   const setIdFunc = (itemInputId) => {
     setId(itemInputId);
   };
@@ -104,7 +104,7 @@ export default function LoginPage({ navigation }) {
           <Text style={styles.signInBtnText}>회원가입</Text>
         </Button>
       </Content>
-      <Button full style={styles.loginBtn} onPress={doSignIn}>
+      <Button full style={styles.loginBtn} onPress={doLogin}>
         <Text>로그인하기</Text>
       </Button>
     </Container>
