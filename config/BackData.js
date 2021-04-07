@@ -5,6 +5,7 @@ import axios from 'axios';
 
 const host = 'http://13.124.166.248'
 
+// 오더페이지-형원님
 export async function getCateData() {
     try {
         // const result = await axios({
@@ -13,6 +14,28 @@ export async function getCateData() {
         // });
 
         const result = await axios.get(host + '/menu/drink');
+
+        // console.log(result)
+        // console.log(result.data)
+        // console.log(result.data.result)
+        // console.log(result.data.result[1].name)
+
+        return result.data.result
+
+    } catch (err) {
+        Alert.alert('잘못된 정보 :(');
+    }
+}
+
+// 홈페이지-형인
+export async function getNewMenuData() {
+    try {
+        // const result = await axios({
+        //     method: 'get',
+        //     url: host + '/menu',
+        // });
+
+        const result = await axios.get(host + '/menu/new_menu');
 
         // console.log(result)
         // console.log(result.data)
