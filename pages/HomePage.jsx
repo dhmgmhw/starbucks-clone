@@ -27,6 +27,7 @@ import ad4 from '../assets/ad4.jpg';
 
 import axios from 'axios';
 import data from '../data.json';
+import { getUserInfo } from '../config/BackData';
 const diviceWidth = Dimensions.get('window').width;
 
 import NewMenu from '../components/NewMenu';
@@ -35,6 +36,8 @@ import { getNewMenuData } from '../config/BackData';
 
 export default function HomePage({ navigation }) {
   const [categories, setCategories] = useState(data.result);
+  const [nickName, setNickName] = useState('');
+  const [star, setStar] = useState('');
 
   useEffect(() => {
     download();
@@ -42,6 +45,9 @@ export default function HomePage({ navigation }) {
 
   const download = async () => {
     const result = await getNewMenuData();
+    const response = await getUserInfo();
+    setNickName(response.nickName);
+    setStar(response.star);
 
     setCategories(result);
   };
@@ -52,27 +58,29 @@ export default function HomePage({ navigation }) {
         <StatusBar style='black' />
 
         {/* Animated Header안에 들어갈 랜덤으로 바뀌는 인삿말 */}
-        <View style={styles.TopMessage}>
+        {/* <View style={styles.TopMessage}>
           <Text style={styles.toptext}>
-            고객님~{'\n'}반갑습니다!
-            <Fontisto name='coffeescript' size={24} color='green' />
-            {/* <FontAwesome name="coffee" size={24} color="green" /> */}
-          </Text>
-        </View>
+            {nickName}고객님~{'\n'}반갑습니다!{'\n'}너의 별은 {star}개이다
+            <Fontisto name='coffeescript' size={24} color='green' /> */}
+        {/* <FontAwesome name="coffee" size={24} color="green" /> */}
+        {/* </Text>
+        </View> */}
 
         {/* 추후에 AnimatedHeader안에 들어갈 카드등록 기능을 가진 cardcomponent */}
-        <View style={styles.makecard}>
-          <Text style={styles.cardtext}>
-            스타벅스 카드를 등록하시고{'\n'}
-            <Text style={{ color: 'green', fontWeight: 'bold' }}>
-              스타벅스 리워드
-            </Text>
-            회원의{'\n'}다양한 혜택을 누리세요!
+        <ImageBackground
+          source={require('../assets/back.png')}
+          style={styles.makecard}>
+          <Text style={styles.toptext}>
+            {nickName}고객님🌸{'\n'}체리블라썸이 찾아왔어요!
+            {/* <Fontisto name='coffeescript' size={24} color='green' /> */}
+            {/* <FontAwesome name="coffee" size={24} color="green" /> */}
+            {'\n'}
+            {'\n'}너의 별은 {star}/12⭐️ 이다.
           </Text>
-          <TouchableOpacity style={styles.cardbutton}>
+          {/* <TouchableOpacity style={styles.cardbutton}>
             <Text style={{ color: 'white', fontSize: 18 }}>카드등록</Text>
-          </TouchableOpacity>
-        </View>
+          </TouchableOpacity> */}
+        </ImageBackground>
 
         {/* 최후에 헤더로 고정될 버튼 모음 */}
         <View style={styles.lastheaderbutton}>
@@ -198,7 +206,6 @@ export default function HomePage({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 100,
     backgroundColor: '#fff',
     shadowColor: 'black',
     shadowOffset: {
@@ -215,27 +222,28 @@ const styles = StyleSheet.create({
   },
   toptext: {
     fontSize: 30,
-    fontWeight: '700',
+    fontWeight: '600',
+    paddingTop: 80,
+    lineHeight: 40,
   },
   makecard: {
     padding: 25,
     paddingTop: 30,
     paddingBottom: 30,
-    margin: 20,
     marginBottom: 5,
     marginTop: 5,
     borderBottomColor: 'black',
-    width: '90%',
-    height: 200,
-    backgroundColor: 'white',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
+    width: diviceWidth,
+    height: 280,
+    alignSelf: 'center',
+    // shadowColor: '#000',
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 2,
+    // },
+    // shadowOpacity: 0.25,
+    // shadowRadius: 3.84,
+    // elevation: 5,
   },
 
   cardtext: {

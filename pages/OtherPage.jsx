@@ -23,7 +23,11 @@ export default function OtherPage({ navigation }) {
         <OtherItemCard subHeader={'e-기프트 카드'} icon={'card-outline'} />
         <OtherItemCard subHeader={`What's New`} icon={'mail-outline'} />
         <OtherItemCard subHeader={'알림'} icon={'notifications-outline'} />
-        <OtherItemCard subHeader={'히스토리'} icon={'timer-outline'} />
+        <OtherItemCard
+          subHeader={'히스토리'}
+          icon={'timer-outline'}
+          onPress={Alert.alert('이동할거야')}
+        />
         <OtherItemCard subHeader={'전자영수증'} icon={'receipt-outline'} />
         <OtherItemCard subHeader={'마이 스타벅스 리뷰'} icon={'cafe-outline'} />
         <View style={styles.border}></View>
