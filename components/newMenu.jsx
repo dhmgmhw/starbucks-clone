@@ -21,6 +21,7 @@ export default function NewMenu({ category }) {
             source={{ uri: category.image }}
           />
         </Row>
+
         <Row size={1} style={styles.cardText}>
           <Text style={styles.cardTitle}>
             {category.i}
@@ -36,7 +37,7 @@ const styles = StyleSheet.create({
   cate: {
     height: 180,
     width: 100,
-    width: diviceWidth * 0.38,
+    width: diviceWidth * 0.4,
     marginVertical: 15,
     flex: 1,
     alignItems: "center",
@@ -55,6 +56,7 @@ const styles = StyleSheet.create({
     fontSize: 13,
     fontWeight: "500",
     marginBottom: 5,
+
     // marginLeft: 10,
     // marginRight: 10,
   },
