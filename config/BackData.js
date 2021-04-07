@@ -37,6 +37,21 @@ export async function getNewMenuData() {
     }
 }
 
+export async function register(id, password, nickName) {
+    try {
+        console.log(id, password, nickName);
+        await axios.post(host + '/user/register', {
+            "nickName": nickName,
+            "id": id,
+            "password": password
+        });
+        Alert.alert('환영합니다, ' + nickName + ' :)');
+    } catch (err) {
+        console.log(err);
+        Alert.alert('아이디를 확인해주세요');
+    }
+}
+
 export async function login(id, password, navigation) {
     await axios.post(host + '/user/login', {
         "id": id,
@@ -61,28 +76,3 @@ export async function logout(navigation) {
         Alert.alert('너는 벗어날 수 없어 ', err.message);
     }
 }
-
-
-
-
-// export async function getDrinks(name) {
-//   try {
-//       const result = await axios({
-//           method: 'get',
-//           url: host + '/menu',
-//           params: {
-//             name: name
-//           }
-//       });
-
-//       const result = await axios.get(host + '/menu/' + name);
-
-//       if (result.data.success) {
-//         return result.data.result
-//       } else {
-//         Alert.alert('잘못된 정보 :(');
-//       }
-//   } catch (err) {
-//       Alert.alert('잘못된 정보 :(');
-//   }
-// }

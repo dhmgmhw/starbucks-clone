@@ -1,117 +1,118 @@
-import React, { useState } from 'react';
-import { StyleSheet, Dimensions, Image, Alert } from 'react-native';
-import { Container, Content, Text, Form, Button } from 'native-base';
-import ItemInput from '../components/ItemInput';
-import { register } from '../config/BackData';
+import React, { useState } from "react";
+import { StyleSheet, Dimensions, Image, Alert } from "react-native";
+import { Container, Content, Text, Form, Button } from "native-base";
+import ItemInput from "../components/ItemInput";
+import { register } from "../config/BackData";
+import { ScrollView } from "react-native-gesture-handler";
 
-const diviceWidth = Dimensions.get('window').width;
+const diviceWidth = Dimensions.get("window").width;
 
 export default function SignUpPage({ navigation }) {
-  const [id, setId] = useState('');
-  const [idError, setIdError] = useState('');
+  const [id, setId] = useState("");
+  const [idError, setIdError] = useState("");
 
-  const [nickName, setNickName] = useState('');
-  const [nickNameError, setNickNameError] = useState('');
+  const [nickName, setNickName] = useState("");
+  const [nickNameError, setNickNameError] = useState("");
 
-  const [password, setPassword] = useState('');
-  const [passwordError, setPasswordError] = useState('');
+  const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
-  const [passwordConfirm, setPasswordConfirm] = useState('');
-  const [passwordConfirmError, setPasswordConfirmError] = useState('');
+  const [passwordConfirm, setPasswordConfirm] = useState("");
+  const [passwordConfirmError, setPasswordConfirmError] = useState("");
 
   const doSignUp = () => {
-    if (id == '') {
-      Alert.alert('아이디를 입력해주세요');
+    if (id == "") {
+      Alert.alert("아이디를 입력해주세요");
       return false;
     } else {
-      setIdError('');
+      setIdError("");
     }
 
-    if (password == '') {
-      Alert.alert('비밀번호를 입력해주세요');
+    if (password == "") {
+      Alert.alert("비밀번호를 입력해주세요");
       return false;
     } else {
-      setPasswordError('');
+      setPasswordError("");
     }
 
-    if (passwordConfirm == '') {
-      Alert.alert('비밀번호를 한번 더 입력해주세요');
+    if (passwordConfirm == "") {
+      Alert.alert("비밀번호를 한번 더 입력해주세요");
       return false;
     } else {
-      setPasswordConfirmError('');
+      setPasswordConfirmError("");
     }
 
     if (password !== passwordConfirm) {
-      Alert.alert('비밀번호가 서로 일치하지 않습니다');
+      Alert.alert("비밀번호가 서로 일치하지 않습니다");
       return false;
     } else {
-      setPasswordConfirmError('');
+      setPasswordConfirmError("");
     }
 
-    if (nickName == '') {
-      Alert.alert('닉네임을 확인해주세요');
+    if (nickName == "") {
+      Alert.alert("닉네임을 확인해주세요");
       return false;
     } else {
-      setNickNameError('');
+      setNickNameError("");
     }
     register(id, password, nickName);
     navigation.goBack();
   };
 
   return (
-    <Container style={styles.container}>
+    <ScrollView style={styles.container}>
       <Image
         style={styles.logo}
-        resizeMode='contain'
-        source={require('../assets/logo.png')}
+        resizeMode="contain"
+        source={require("../assets/logo.png")}
       />
 
       <Content contentContainerStyle={styles.content} scrollEnabled={false}>
         <Text style={styles.idTitle}>
-          아이디와 비밀번호를{'\n'}입력해주세요.
+          아이디와 비밀번호를{"\n"}입력해주세요.
         </Text>
         <Form style={styles.form}>
           <ItemInput
-            title={'아이디 (4~13자리 이내)'}
-            type={'id'}
+            title={"아이디 (4~13자리 이내)"}
+            type={"id"}
             error={idError}
             setFunc={setId}
           />
           <ItemInput
-            title={'비밀번호 (10~29자리 이내)'}
-            type={'password'}
+            title={"비밀번호 (10~29자리 이내)"}
+            type={"password"}
             error={passwordError}
             setFunc={setPassword}
           />
           <ItemInput
-            title={'비밀번호 확인'}
-            type={'password'}
+            title={"비밀번호 확인"}
+            type={"password"}
             error={passwordConfirmError}
             setFunc={setPasswordConfirm}
           />
         </Form>
-        <Text style={styles.emailTitle}>닉네임을{'\n'}입력해주세요.</Text>
+        <Text style={styles.emailTitle}>닉네임을{"\n"}입력해주세요.</Text>
         <Form style={styles.form}>
           <ItemInput
-            title={'닉네임 (한글 최대 6자)'}
-            type={'nickName'}
+            title={"닉네임 (한글 최대 6자)"}
+            type={"nickName"}
             error={nickNameError}
             setFunc={setNickName}
           />
         </Form>
         <Text style={styles.info}>
-          {'\u2022'} 주문하신 제품/상품을 찾으실 때, 파트너가 등록하신 닉네임을
+          {"\u2022"} 주문하신 제품/상품을 찾으실 때, 파트너가 등록하신 닉네임을
           불러 드립니다.
         </Text>
         <Text style={styles.info}>
-          {'\u2022'} 부적절한 닉네임을 신청하는 경우, 신청이 제한되거나 관리자에
+          {"\u2022"} 부적절한 닉네임을 신청하는 경우, 신청이 제한되거나 관리자에
           의해 예고 없이 사용이 제한될 수 있습니다.
         </Text>
       </Content>
       <Button full style={styles.signUpBtn} onPress={doSignUp}>
         <Text>회원가입</Text>
       </Button>
-    </Container>
+    </ScrollView>
   );
 }
 
@@ -120,24 +121,25 @@ const styles = StyleSheet.create({
     marginTop: 50,
     height: 40,
     marginBottom: 20,
-    alignSelf: 'center',
+    alignSelf: "center",
   },
 
   content: {
     flex: 1,
-    justifyContent: 'center',
+    justifyContent: "center",
     margin: 20,
     bottom: 40,
   },
   idTitle: {
     paddingLeft: 20,
+    marginTop: 30,
     fontSize: 25,
-    fontWeight: '700',
+    fontWeight: "700",
   },
   emailTitle: {
     paddingLeft: 20,
     fontSize: 25,
-    fontWeight: '700',
+    fontWeight: "700",
     marginTop: 30,
   },
   form: {
@@ -150,24 +152,24 @@ const styles = StyleSheet.create({
   info: {
     paddingHorizontal: 30,
     fontSize: 14,
-    color: 'grey',
+    color: "grey",
     lineHeight: 25,
   },
   signUpBtn: {
-    alignSelf: 'center',
+    alignSelf: "center",
     width: diviceWidth * 0.9,
     marginBottom: 30,
     borderRadius: 100,
-    backgroundColor: '#3AB27B',
+    backgroundColor: "#3AB27B",
   },
   signInBtn: {
-    alignSelf: 'center',
+    alignSelf: "center",
     width: 120,
     marginTop: 5,
-    backgroundColor: 'white',
+    backgroundColor: "white",
   },
   signInBtnText: {
-    color: 'black',
+    color: "black",
     fontSize: 14,
   },
 });
