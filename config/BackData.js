@@ -61,7 +61,6 @@ export async function getNewMenuData() {
 
 export async function register(id, password, nickName) {
     try {
-        console.log(id, password, nickName);
         await axios.post(host + '/user/register', {
             "nickName": nickName,
             "id": id,
@@ -104,7 +103,6 @@ export async function getUserInfo() {
                 authorization: 'Bearer ' + token,
             },
         });
-        console.log(response.data.result)
         return response.data.result
     } catch (err) {
         Alert.alert("당신이 누군지 모르겠어요 :(");
@@ -112,7 +110,7 @@ export async function getUserInfo() {
 }
 
 // 주문하기 api 여기서 주워서 쓰시면 됩니다!!
-export async function placeOrder(menuId, size, cup_option, num) {
+export async function placeOrder(menuId, size, cup_option, num, navigation) {
     try {
         const token = await AsyncStorage.getItem('session');
         const response = await axios({
@@ -128,10 +126,12 @@ export async function placeOrder(menuId, size, cup_option, num) {
                 authorization: 'Bearer ' + token,
             },
         });
-        console.log(response.data.result)
-        return response.data.result
+        console.log(response)
+        Alert.alert("주문이 완료되었습니다!");
+        navigation.push('TabNavigator')
     } catch (err) {
-        Alert.alert("결제를 진행할 수 없습니다 :(");
+        Alert.alert("주문ㄴㄴ");
+        Alert.alert(err);
     }
 }
 

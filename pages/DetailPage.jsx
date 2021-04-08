@@ -1,34 +1,48 @@
-import React, { useState, useEffect } from "react";
-import { Container, Footer, Button } from "native-base";
+import React, { useState, useEffect } from 'react';
+import { Container, Footer, Button } from 'native-base';
 import {
   StyleSheet,
   ScrollView,
   View,
   Image,
   Text,
-  TouchableOpacity,
+  Alert,
   Modal,
-} from "react-native";
-import SwitchSelector from "react-native-switch-selector";
+} from 'react-native';
+import SwitchSelector from 'react-native-switch-selector';
+import NumericInput, { calcSize } from 'react-native-numeric-input';
+import { Ionicons } from '@expo/vector-icons';
 
-import { Feather } from "@expo/vector-icons";
+import { Feather } from '@expo/vector-icons';
 
-import Loading from "./Loading";
-import HeaderComponent from "../components/HeaderComponent";
+import Loading from './Loading';
+import HeaderComponent from '../components/HeaderComponent';
 
-import data from "../data.json";
-import { getMenuDetailData } from "../config/BackData";
+import data from '../data.json';
+import { getMenuDetailData } from '../config/BackData';
 
+import { placeOrder } from '../config/BackData';
 // import { getCateData } from '../config/BackData';
 
 export default function DetailPage({ navigation, route }) {
   const menu = route.params;
-  let price = menu.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+  let price = menu.price;
 
   const [ready, setReady] = useState(false);
   const [categories, setCategories] = useState(data.result);
 
   const [modalOpen, setModalOpen] = useState(false);
+
+  const [manu, setManu] = useState(menu._id);
+  const [size, setSize] = useState('Tall');
+  const [cup, setCup] = useState('개인컵');
+  const [num, setNum] = useState(1);
+
+  const doOrder = () => {
+    placeOrder(manu, size, cup, num, navigation);
+    setModalOpen(false);
+    Alert.alert('주문이 완료되었습니다!');
+  };
 
   useEffect(() => {
     setTimeout(() => {
@@ -39,13 +53,12 @@ export default function DetailPage({ navigation, route }) {
 
   const download = async () => {
     const result = await getMenuDetailData(cate._id);
-
     setCategories(result);
   };
-
+  let allergy = menu.allergy == 'none' ? '' : menu.allergy;
   return (
     <Container>
-      <ScrollView style={{ backgroundColor: "white" }}>
+      <ScrollView style={{ backgroundColor: 'white' }}>
         <View style={styles.imgbox}>
           <Image source={{ uri: menu.image }} style={styles.img} />
         </View>
@@ -53,7 +66,7 @@ export default function DetailPage({ navigation, route }) {
         <View style={styles.namebox}>
           <Text style={styles.name}>{menu.name}</Text>
           <Text style={styles.en_name}>{menu.eng_name}</Text>
-          <Text style={{ color: "grey" }}>{menu.description}</Text>
+          <Text style={{ color: 'grey' }}>{menu.description}</Text>
           <Text style={styles.price}>{price}원 </Text>
         </View>
 
@@ -69,24 +82,27 @@ export default function DetailPage({ navigation, route }) {
 
         {/* 알레르기 요인 'none'일 때 표기없애기 */}
         <View style={styles.allergy}>
-          <Text style={{ fontSize: 20, fontWeight: "bold" }}>
+          <Text style={{ fontSize: 20, fontWeight: 'bold' }}>
             알레르기 유발 요인
           </Text>
-          <Text>{menu.allergy}</Text>
+          <Text>{allergy}</Text>
         </View>
       </ScrollView>
 
       {/* modal */}
       <Footer style={styles.footer}>
-        <Modal style={styles.modal} visible={modalOpen} animationType="slide">
+        <Modal style={styles.modal} visible={modalOpen} animationType='slide'>
           <ScrollView style={{ padding: 30 }}>
-            <Button
-              style={styles.modaltoggle}
-              onPress={() => setModalOpen(false)}></Button>
+            <Ionicons
+              name='chevron-back'
+              size={40}
+              color='grey'
+              onPress={() => setModalOpen(false)}
+            />
 
             <Text
               style={{
-                textAlign: "center",
+                textAlign: 'center',
                 fontSize: 20,
                 padding: 20,
                 paddingTop: 30,
@@ -94,47 +110,45 @@ export default function DetailPage({ navigation, route }) {
               {menu.name}
             </Text>
 
-            <View style={{ backgroundColor: "#EFFBF8" }}>
+            <View style={{ backgroundColor: '#EFFBF8' }}>
               <Text
                 style={{
-                  textAlign: "center",
+                  textAlign: 'center',
                   padding: 10,
-                  color: "green",
+                  color: 'green',
                   fontSize: 12,
                 }}>
                 환경을 위해 일회용컵 사용 줄이기에 동참해 주세요
               </Text>
             </View>
 
-            <Text style={{ fontSize: 23, fontWeight: "bold", marginTop: 50 }}>
+            <Text style={{ fontSize: 23, fontWeight: 'bold', marginTop: 50 }}>
               사이즈
             </Text>
             <View style={styles.sizebox}>
               <Image
-                source={require("../assets/size.png")}
+                source={require('../assets/size.png')}
                 style={{
                   height: 200,
                   width: 350,
-                  resizeMode: "contain",
+                  resizeMode: 'contain',
                 }}
               />
             </View>
             <SwitchSelector
               options={[
-                { label: "Tall", value: "Tall" },
-                { label: "Grande", value: "Grande" },
-                { label: "Venti", value: "Venti" },
+                { label: 'Tall', value: 'Tall' },
+                { label: 'Grande', value: 'Grande' },
+                { label: 'Venti', value: 'Venti' },
               ]}
               initial={0}
-              onPress={(value) =>
-                console.log(`Call onPress with value: ${value}`)
-              }
+              onPress={(value) => setSize(value)}
             />
 
             <Text
               style={{
                 fontSize: 23,
-                fontWeight: "bold",
+                fontWeight: 'bold',
                 marginTop: 50,
                 marginBottom: 10,
               }}>
@@ -142,35 +156,48 @@ export default function DetailPage({ navigation, route }) {
             </Text>
             <SwitchSelector
               options={[
-                { label: "매장컵", value: "매장컵" },
-                { label: "개인컵", value: "개인컵" },
-                { label: "일회용컵", value: "일회용컵" },
+                { label: '매장컵', value: '매장컵' },
+                { label: '개인컵', value: '개인컵' },
+                { label: '일회용컵', value: '일회용컵' },
               ]}
               initial={0}
-              onPress={(value) =>
-                console.log(`Call onPress with value: ${value}`)
-              }
+              onPress={(value) => setCup(value)}
             />
             <Text
               style={{
-                textAlign: "right",
+                textAlign: 'right',
                 fontSize: 25,
-                fontWeight: "bold",
-                paddingTop: 25,
+                fontWeight: 'bold',
+                paddingTop: 75,
+                top: 35,
               }}>
-              {price}원{" "}
+              {price * num}원
             </Text>
+            <NumericInput
+              // value={num}
+              onChange={(value) => setNum(value)}
+              minValue={0}
+              totalWidth={200}
+              valueType='integer'
+              rounded
+              iconStyle={{ color: 'white' }}
+              rightButtonBackgroundColor='#3CB371'
+              leftButtonBackgroundColor='#3CB371'
+              sepratorWidth={0.6}
+              totalHeight={40}
+            />
           </ScrollView>
-
           <Footer style={styles.footer}>
-            <Button style={styles.orderbox1}>
-              <Text>주문하기</Text>
+            <Button style={styles.orderbox1} onPressOut={doOrder}>
+              <Text style={{ color: 'white', fontWeight: 'bold' }}>
+                주문하기
+              </Text>
             </Button>
           </Footer>
         </Modal>
 
         <Button style={styles.orderbox} onPress={() => setModalOpen(true)}>
-          <Text style={{ color: "white", fontWeight: "bold" }}>주문하기</Text>
+          <Text style={{ color: 'white', fontWeight: 'bold' }}>주문하기</Text>
         </Button>
       </Footer>
     </Container>
@@ -183,33 +210,33 @@ const styles = StyleSheet.create({
     height: 300,
   },
   img: {
-    height: "100%",
-    width: "100%",
-    resizeMode: "cover",
+    height: '100%',
+    width: '100%',
+    resizeMode: 'cover',
   },
   namebox: {
     padding: 20,
   },
   name: {
     fontSize: 25,
-    fontWeight: "700",
+    fontWeight: '700',
   },
   en_name: {
-    color: "darkgrey",
+    color: 'darkgrey',
     paddingBottom: 10,
   },
   price: {
     fontSize: 25,
-    fontWeight: "bold",
+    fontWeight: 'bold',
     paddingTop: 25,
   },
   icehotbox: {
     flex: 1,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
     borderWidth: 1,
-    borderColor: "grey",
+    borderColor: 'grey',
     // backgroundColor: "#1E90FF",
     width: 370,
     height: 40,
@@ -219,30 +246,30 @@ const styles = StyleSheet.create({
   },
   hotbox: {
     flex: 1,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
     borderRightWidth: 1,
   },
   icebox: {
     flex: 1,
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   icehottext: {
     flex: 1,
-    color: "black",
-    fontWeight: "bold",
-    textAlign: "center",
-    alignItems: "center",
-    justifyContent: "center",
+    color: 'black',
+    fontWeight: 'bold',
+    textAlign: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   orderbox: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#3CB371",
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#3CB371',
     width: 370,
     height: 40,
     margin: 20,
@@ -251,7 +278,7 @@ const styles = StyleSheet.create({
   footer: {
     borderTopWidth: 0,
     margin: 10,
-    backgroundColor: "white",
+    backgroundColor: 'white',
     borderBottomWidth: 0,
     shadowOffset: { height: 0, width: 0 },
     shadowOpacity: 0,
@@ -268,22 +295,22 @@ const styles = StyleSheet.create({
   allergy: {
     padding: 20,
     borderTopWidth: 0.5,
-    borderColor: "grey",
+    borderColor: 'grey',
   },
   modaltoggle: {
     width: 120,
-    height: 20,
-    backgroundColor: "grey",
+    height: 30,
+    backgroundColor: 'grey',
     borderRadius: 40,
     marginBottom: 10,
     borderWidth: 1,
-    alignSelf: "center",
+    alignSelf: 'center',
   },
   orderbox1: {
     flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "#3CB371",
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#3CB371',
     width: 370,
     height: 40,
     margin: 20,

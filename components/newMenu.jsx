@@ -58,8 +58,6 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     marginBottom: 5,
     textAlign: 'center',
-    // marginLeft: 10,
-    // marginRight: 10,
   },
   cardEnTitle: {
     fontSize: 13,
