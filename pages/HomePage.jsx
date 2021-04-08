@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Container } from 'native-base';
-import { ProgressBar } from 'react-native-paper';
+import { ProgressBar, Colors } from 'react-native-paper';
 import { Col, Grid } from 'react-native-easy-grid';
 
 import { SimpleLineIcons } from '@expo/vector-icons';
@@ -35,13 +35,13 @@ import { getNewMenuData } from '../config/BackData';
 export default function HomePage({ navigation }) {
   const [categories, setCategories] = useState(data.result);
   const [nickName, setNickName] = useState('');
-  const [star, setStar] = useState('');
-
+  const [star, setStar] = useState(0);
   const starLeft = 12 - star;
   useEffect(() => {
     navigation.addListener('beforeRemove', (e) => {
       e.preventDefault();
     });
+
     download();
   }, []);
 
@@ -73,7 +73,7 @@ export default function HomePage({ navigation }) {
               </Text>
               <ProgressBar
                 style={styles.ProgressBar}
-                progress={{ star } * 0.083}
+                progress={star * 0.083}
                 color={'#B99C5C'}
               />
             </Col>

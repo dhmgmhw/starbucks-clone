@@ -50,5 +50,31 @@
             "eng_name": "Blueberry Cookie Cheese Cake",
             "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2018/04/[9300000000913]_20180430162431754.jpg"
         }
+    ],
+    "order": [
+        {
+            "_id": "606ea82079ae0d095e50b049",
+            "user": "606d41efb556a80c59b95ee9",
+            "menu": {
+                "_id": "606acdcf4cecac7e4e4e51dc",
+                "menu": "음료",
+                "category": "프라푸치노",
+                "eng_name": "White Strawberry Cream Frappuccino",
+                "name": "화이트 딸기 크림 프라푸치노인가",
+                "description": "바닐라 크림 베이스와 새콤 달콤한 딸기 과육이 레이어드된 크림 프라푸치노",
+                "price": 6100,
+                "eng_category": "Frappuccino",
+                "nutrition": "'360', '11', '4', '13', '0', '170', '54', '0'",
+                "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2019/04/[9200000002161]_20190423145431290.jpg",
+                "allergy": " 우유 / 토마토",
+                "hot": false,
+                "ice": true
+            },
+            "size": "tall",
+            "cup_option": "mug",
+            "num": 1,
+            "date": "2021-04-08T06:52:16.969Z",
+            "__v": 0
+        }
     ]
 }

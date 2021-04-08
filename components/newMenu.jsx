@@ -1,14 +1,14 @@
-import React from "react";
+import React from 'react';
 import {
   StyleSheet,
   Text,
   Dimensions,
   TouchableOpacity,
   Image,
-} from "react-native";
-import { Col, Row, Grid } from "react-native-easy-grid";
+} from 'react-native';
+import { Row, Grid } from 'react-native-easy-grid';
 
-const diviceWidth = Dimensions.get("window").width;
+const diviceWidth = Dimensions.get('window').width;
 
 export default function NewMenu({ category }) {
   return (
@@ -17,7 +17,7 @@ export default function NewMenu({ category }) {
         <Row size={3}>
           <Image
             style={styles.cardImage}
-            resizeMode="cover"
+            resizeMode='cover'
             source={{ uri: category.image }}
           />
         </Row>
@@ -40,8 +40,8 @@ const styles = StyleSheet.create({
     width: diviceWidth * 0.4,
     marginVertical: 15,
     flex: 1,
-    alignItems: "center",
-    alignSelf: "center",
+    alignItems: 'center',
+    alignSelf: 'center',
     paddingRight: 30,
   },
   cardImage: {
@@ -51,19 +51,19 @@ const styles = StyleSheet.create({
   },
   cardTitle: {
     flex: 1,
-    flexDirection: "column",
-    alignItems: "center",
-    justifyContent: "center",
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
     fontSize: 13,
-    fontWeight: "500",
+    fontWeight: '500',
     marginBottom: 5,
-    textAlign: "center",
+    textAlign: 'center',
     // marginLeft: 10,
     // marginRight: 10,
   },
   cardEnTitle: {
     fontSize: 13,
-    color: "lightgrey",
-    fontWeight: "500",
+    color: 'lightgrey',
+    fontWeight: '500',
   },
 });

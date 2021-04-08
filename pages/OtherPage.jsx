@@ -25,6 +25,8 @@ export default function OtherPage({ navigation }) {
         <OtherItemCard subHeader={`What's New`} icon={'mail-outline'} />
         <OtherItemCard subHeader={'알림'} icon={'notifications-outline'} />
         <TouchableOpacity onPress={() => navigation.navigate('HistoryPage')}>
+          {/* <TouchableOpacity
+          onPress={() => navigation.navigate('OrderConfirmPage')}> */}
           <Grid style={styles.hisHeader}>
             <Col size={1}>
               <Ionicons name={'timer-outline'} color={'grey'} size={25} />

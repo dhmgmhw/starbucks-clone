@@ -1,15 +1,15 @@
-import React, { useState, useEffect } from "react";
-import { Container } from "native-base";
-import { StyleSheet, ScrollView } from "react-native";
+import React, { useState, useEffect } from 'react';
+import { Container } from 'native-base';
+import { StyleSheet, ScrollView } from 'react-native';
 
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons } from '@expo/vector-icons';
 
-import Loading from "./Loading";
-import HeaderComponent from "../components/HeaderComponent";
-import CateDetailComponent from "../components/CateDatailComponent";
+import Loading from './Loading';
+import HeaderComponent from '../components/HeaderComponent';
+import CateDetailComponent from '../components/CateDatailComponent';
 
-import data from "../data.json";
-import { getCateDetailData } from "../config/BackData";
+import data from '../data.json';
+import { getCateDetailData } from '../config/BackData';
 
 export default function CateDetailPage({ navigation, route }) {
   const cate = route.params;
@@ -36,8 +36,8 @@ export default function CateDetailPage({ navigation, route }) {
       <HeaderComponent headerTitle={cate.name} style={styles.header} />
       <Ionicons
         style={styles.headerIcons1}
-        name={"search-outline"}
-        color={"grey"}
+        name={'search-outline'}
+        color={'grey'}
         size={25}
       />
 
@@ -59,7 +59,7 @@ export default function CateDetailPage({ navigation, route }) {
 }
 const styles = StyleSheet.create({
   headerIcons1: {
-    position: "absolute",
+    position: 'absolute',
     top: 60,
     left: 360,
   },
