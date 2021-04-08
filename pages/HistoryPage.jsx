@@ -1,8 +1,25 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Container, Tab, Tabs } from 'native-base';
-import { StyleSheet, View, Text } from 'react-native';
+import { StyleSheet, View, ScrollView, Text, Dimensions } from 'react-native';
+import HistoriesComponent from '../components/HistoriesComponent';
+import HistoriesComponentColor from '../components/HistoriesComponentColor';
+import { getHistory } from '../config/BackData';
+import data from '../data.json';
+const diviceWidth = Dimensions.get('window').width;
 
-export default function HistoryPage() {
+export default function HistoryPage({ navigation }) {
+  console.disableYellowBox = true;
+  const [history, setHistory] = useState(data.order);
+
+  useEffect(() => {
+    download();
+  }, []);
+
+  const download = async () => {
+    const result = await getHistory();
+    setHistory(result);
+  };
+
   return (
     <Container>
       <View style={styles.header}>
@@ -15,16 +32,23 @@ export default function HistoryPage() {
           textStyle={{ color: 'grey' }}
           tabStyle={{ backgroundColor: 'white' }}
           activeTabStyle={{ backgroundColor: 'white' }}>
-          <View>
-            <Text
-            style={{
-              textAlign: 'center',
-              marginTop: 250,
-              fontSize: 16,
-            }}>
-            히스토리가 없습니다.
-            </Text>
-          </View>
+          <ScrollView>
+            {history.map((history, i) => {
+              return i % 2 == 0 ? (
+                <HistoriesComponentColor
+                  history={history}
+                  key={i}
+                  navigation={navigation}
+                />
+              ) : (
+                <HistoriesComponent
+                  history={history}
+                  key={i}
+                  navigation={navigation}
+                />
+              );
+            })}
+          </ScrollView>
         </Tab>
         <Tab
           heading='홀케이크 선물/예약'
@@ -32,7 +56,7 @@ export default function HistoryPage() {
           textStyle={{ color: 'grey' }}
           tabStyle={{ backgroundColor: 'white' }}
           activeTabStyle={{ backgroundColor: 'white' }}>
-          <View>
+          <ScrollView>
             <Text
               style={{
                 textAlign: 'center',
@@ -41,12 +65,13 @@ export default function HistoryPage() {
               }}>
               히스토리가 없습니다.
             </Text>
-          </View>
+          </ScrollView>
         </Tab>
       </Tabs>
     </Container>
   );
 }
+
 const styles = StyleSheet.create({
   header: {
     backgroundColor: 'white',
@@ -59,5 +84,21 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     fontSize: 16,
     fontWeight: '600',
+  },
+  card: {
+    width: diviceWidth,
+    height: 110,
+    backgroundColor: 'lightgrey',
+    flexDirection: 'column',
+  },
+  cardImgBox: { width: 30, height: 30 },
+  cardImg: {
+    width: 30,
+    height: 30,
+  },
+  cardDesc: {
+    width: 80,
+    height: 80,
+    backgroundColor: 'red',
   },
 });

@@ -21,7 +21,6 @@ export default function CateComponent({ navigation, category }) {
       <Grid style={styles.cate}>
         <Col size={1}>
           <Image
-            withIndicator
             style={styles.cardImage}
             resizeMode="cover"
             source={{ uri: category.image }}

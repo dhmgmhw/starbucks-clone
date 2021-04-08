@@ -21,12 +21,10 @@ export async function getCateDetailData(id) {
         // console.log(id)
         // const result = await axios.get(host + '/menu/drink/categories/606c13eadbd54522e7c47544');
         // const result = await axios.get(host + '/menu/drink/categories/' + id);
-
         const response = await axios({
             method: 'get',
             url: host + '/menu/drink/categories/' + id,
         });
-
         // console.log(response.data.result)
         return response.data.result
     } catch (err) {
@@ -40,12 +38,10 @@ export async function getMenuDetailData(id) {
         // console.log(id)
         // const result = await axios.get(host + '/menu/drink/categories/606c13eadbd54522e7c47544');
         // const result = await axios.get(host + '/menu/drink/categories/' + id);
-
         const response = await axios({
             method: 'get',
             url: host + '/menu/drink/' + id,
-          });
-
+        });
         // console.log(response.data.result)
         return response.data.result
     } catch (err) {
@@ -88,11 +84,9 @@ export async function login(id, password, navigation) {
                 "password": password
             },
         });
-
         const token = response.data.result.user.token;
         await AsyncStorage.setItem('session', token);
-
-        Alert.alert('로그인 성공!');
+        Alert.alert('어서와요, ' + id + '! :)');
         navigation.push('TabNavigator');
     } catch (err) {
         Alert.alert('로그인에 문제가 있는 것 같아요 :(');
@@ -116,6 +110,47 @@ export async function getUserInfo() {
         Alert.alert("당신이 누군지 모르겠어요 :(");
     }
 }
+
+// 주문하기 api 여기서 주워서 쓰시면 됩니다!!
+export async function placeOrder(menuId, size, cup_option, num) {
+    try {
+        const token = await AsyncStorage.getItem('session');
+        const response = await axios({
+            method: 'post',
+            url: host + '/order',
+            data: {
+                "menuId": menuId,
+                "size": size,
+                "cup_option": cup_option,
+                "num": num
+            },
+            headers: {
+                authorization: 'Bearer ' + token,
+            },
+        });
+        console.log(response.data.result)
+        return response.data.result
+    } catch (err) {
+        Alert.alert("결제를 진행할 수 없습니다 :(");
+    }
+}
+
+export async function getHistory() {
+    try {
+        const token = await AsyncStorage.getItem('session');
+        const response = await axios({
+            method: 'get',
+            url: host + '/order',
+            headers: {
+                authorization: 'Bearer ' + token,
+            },
+        });
+        return response.data.result
+    } catch (err) {
+        Alert.alert("주문 내역을 불러올 수 없습니다");
+    }
+}
+
 
 export async function logout(navigation) {
     try {
