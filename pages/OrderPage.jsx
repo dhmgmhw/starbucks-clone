@@ -9,11 +9,10 @@ import data from "../data.json";
 import CateComponent from "../components/CateComponent";
 import WholeCakeComponent from "../components/WholeCakeComponent";
 
-
 export default function OrderPage({ navigation }) {
   console.disableYellowBox = true;
   const [categories, setCategories] = useState(data.result);
-  const cake = data.cake
+  const cake = data.cake;
 
   useEffect(() => {
     download();
@@ -69,12 +68,7 @@ export default function OrderPage({ navigation }) {
           activeTabStyle={{ backgroundColor: "#FFFFFF" }}>
           <ScrollView>
             {cake.map((cake, i) => {
-              return (
-                <WholeCakeComponent
-                  cake={cake}
-                  key={i}
-                />
-              );
+              return <WholeCakeComponent cake={cake} key={i} />;
             })}
           </ScrollView>
         </Tab>
