@@ -11,6 +11,7 @@ import { Col, Grid } from 'react-native-easy-grid';
 const diviceWidth = Dimensions.get('window').width;
 
 export default function WholeCakeComponent({ cake }) {
+  let price = cake.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
   return (
     <TouchableOpacity>
       <Grid style={styles.cate}>
@@ -24,7 +25,7 @@ export default function WholeCakeComponent({ cake }) {
         <Col size={2} style={styles.cardText}>
           <Text style={styles.cardTitle}>{cake.name}</Text>
           <Text style={styles.cardEnTitle}>{cake.eng_name}</Text>
-          <Text style={styles.cardPrice}>{cake.price}</Text>
+          <Text style={styles.cardPrice}>{price}원</Text>
         </Col>
       </Grid>
     </TouchableOpacity>
@@ -56,8 +57,8 @@ const styles = StyleSheet.create({
     color: 'lightgrey',
     fontWeight: '500',
   },
-  cardPrice:{
-    marginTop:10,
+  cardPrice: {
+    marginTop: 10,
     fontWeight: '600',
-  }
+  },
 });

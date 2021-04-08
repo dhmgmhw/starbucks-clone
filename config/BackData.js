@@ -106,6 +106,6 @@ export async function logout(navigation) {
         Alert.alert('로그인페이지로 돌아갑니다.');
         navigation.push('LoginPage');
     } catch (err) {
-        Alert.alert('너는 벗어날 수 없어 ', err.message);
+        Alert.alert('너는 벗어날 수 없어');
     }
 }
