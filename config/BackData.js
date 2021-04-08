@@ -19,7 +19,7 @@ export async function getCateData() {
 //오더페이지>카테코리>세부카테고리 - 형인
 export async function getCateDetailData(id) {
     try {
-        console.log(id)
+        // console.log(id)
         // const result = await axios.get(host + '/menu/drink/categories/606c13eadbd54522e7c47544');
         // const result = await axios.get(host + '/menu/drink/categories/' + id);
 
@@ -28,7 +28,26 @@ export async function getCateDetailData(id) {
             url: host + '/menu/drink/categories/' + id,
           });
 
-        console.log(response.data.result)
+        // console.log(response.data.result)
+        return response.data.result
+    } catch (err) {
+        Alert.alert(err);
+    }
+}
+
+//오더페이지>카테코리>세부카테고리>각 메뉴별 정보 - 형인
+export async function getMenuDetailData(id) {
+    try {
+        // console.log(id)
+        // const result = await axios.get(host + '/menu/drink/categories/606c13eadbd54522e7c47544');
+        // const result = await axios.get(host + '/menu/drink/categories/' + id);
+
+        const response = await axios({
+            method: 'get',
+            url: host + '/menu/drink/' + id,
+          });
+
+        // console.log(response.data.result)
         return response.data.result
     } catch (err) {
         Alert.alert(err);
