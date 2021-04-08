@@ -8,8 +8,6 @@ import {
 } from "react-native";
 import { Col, Grid } from "react-native-easy-grid";
 
-import ImageBlurLoading from "react-native-image-blur-loading";
-
 const diviceWidth = Dimensions.get("window").width;
 
 export default function CateComponent({ navigation, category }) {
@@ -22,7 +20,7 @@ export default function CateComponent({ navigation, category }) {
       }}>
       <Grid style={styles.cate}>
         <Col size={1}>
-          <ImageBlurLoading
+          <Image
             withIndicator
             style={styles.cardImage}
             resizeMode="cover"
