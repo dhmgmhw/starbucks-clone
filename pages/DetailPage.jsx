@@ -1,43 +1,57 @@
 import React, { useState, useEffect } from "react";
+import { Container } from "native-base";
 import {
   StyleSheet,
-  View,
-  Text,
-  Card,
-  TouchableOpacity,
-  Image,
-  ImageBackground,
-  ScrollViewComponent,
   ScrollView,
-  Dimensions,
+  View,
+  Image,
+  Text,
+  TouchableOpacity,
 } from "react-native";
-import { Container } from "native-base";
-import { Col, Row, Grid } from "react-native-easy-grid";
+
+import Loading from "./Loading";
+import HeaderComponent from "../components/HeaderComponent";
+
+import data from "../data.json";
+import { getMenuDetailData } from "../config/BackData";
 
 // import { getCateData } from '../config/BackData';
 
-import coffee from "../assets/coffee.png";
+export default function DetailPage({ navigation, route }) {
+  const menu = route.params;
+  let price = menu.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 
-export default function DetailPage() {
+  const [ready, setReady] = useState(false);
+  const [categories, setCategories] = useState(data.result);
+
+  useEffect(() => {
+    setTimeout(() => {
+      download();
+      setReady(true);
+    });
+  }, []);
+
+  const download = async () => {
+    const result = await getMenuDetailData(cate._id);
+
+    setCategories(result);
+  };
   return (
     <ScrollView style={{ backgroundColor: "white" }}>
       {/* image */}
       <View style={styles.imgbox}>
-        <Image source={coffee} style={styles.img} />
+        <Image source={{ uri: menu.image }} style={styles.img} />
       </View>
 
       <View style={styles.namebox}>
         {/* name*/}
-        <Text style={styles.name}>미드나잇 베르가못 콜드 브루</Text>
+        <Text style={styles.name}>{menu.name}</Text>
         {/* eng_name */}
-        <Text style={styles.en_name}>Midnight Bergamot Cold Brew</Text>
+        <Text style={styles.en_name}>{menu.eng_menu}</Text>
         {/* description */}
-        <Text style={{ color: "grey" }}>
-          화이트 초콜릿과 화사한 베르가못향이 콜드 브루를 만나 벚꽃이 만발한
-          보랏빛 밤을 닮은 미드나잇 베르가못 콜드 브루
-        </Text>
+        <Text style={{ color: "grey" }}>{menu.description}</Text>
         {/* price */}
-        <Text style={styles.price}>6,100원</Text>
+        <Text style={styles.price}>{price}원 </Text>
       </View>
 
       {/* ice랑 hot 구분 어떻게?? */}
@@ -83,7 +97,9 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "#1E90FF",
+    borderWidth: 1,
+    borderColor: "grey",
+    // backgroundColor: "#1E90FF",
     width: 370,
     height: 40,
     margin: 20,
@@ -91,7 +107,7 @@ const styles = StyleSheet.create({
     borderRadius: 20,
   },
   icehottext: {
-    color: "white",
+    color: "black",
     fontWeight: "bold",
   },
   orderbox: {

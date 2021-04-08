@@ -1,9 +1,9 @@
-import React from 'react';
-import { StyleSheet, View, Text, TouchableOpacity, Alert } from 'react-native';
-import { Col, Grid } from 'react-native-easy-grid';
-import { ScrollView } from 'react-native-gesture-handler';
-import LogoutComponent from '../components/LogoutComponent';
-import { logout } from '../config/BackData';
+import React from "react";
+import { StyleSheet, View, Text, TouchableOpacity, Alert } from "react-native";
+import { Col, Grid } from "react-native-easy-grid";
+import { ScrollView } from "react-native-gesture-handler";
+import LogoutComponent from "../components/LogoutComponent";
+import { logout } from "../config/BackData";
 
 export default function LogoutPage({ navigation }) {
   const logoutFunc = () => {
@@ -33,35 +33,35 @@ export default function LogoutPage({ navigation }) {
         <View>
           <Text style={styles.subHeader}>계정정보</Text>
         </View>
-        <LogoutComponent subHeader={'닉네임'} subDesc={'훔바훔바'} />
+        <LogoutComponent subHeader={"닉네임"} subDesc={"훔바훔바"} />
         <LogoutComponent
-          subHeader={'개인컵 리워드 설정'}
-          subDesc={'300원 할인'}
+          subHeader={"개인컵 리워드 설정"}
+          subDesc={"300원 할인"}
         />
-        <LogoutComponent subHeader={'My DT Pass'} subDesc={'OFF'} />
-        <LogoutComponent subHeader={`연결된 서비스 관리`} subDesc={''} />
-        <LogoutComponent subHeader={'임직원 번호 관리'} subDesc={''} />
+        <LogoutComponent subHeader={"My DT Pass"} subDesc={"OFF"} />
+        <LogoutComponent subHeader={`연결된 서비스 관리`} subDesc={""} />
+        <LogoutComponent subHeader={"임직원 번호 관리"} subDesc={""} />
         <View style={styles.border}></View>
         <View>
           <Text style={styles.subHeader}>권한 설정</Text>
         </View>
-        <LogoutComponent subHeader={'푸시 알림'} subDesc={'OFF'} />
+        <LogoutComponent subHeader={"푸시 알림"} subDesc={"OFF"} />
         <LogoutComponent
-          subHeader={'위치 정보 서비스 이용약관 동의'}
-          subDesc={''}
+          subHeader={"위치 정보 서비스 이용약관 동의"}
+          subDesc={""}
         />
         <View style={styles.border}></View>
         <View>
           <Text style={styles.subHeader}>기타 관리</Text>
         </View>
-        <LogoutComponent subHeader={'암호 설정'} subDesc={''} />
-        <LogoutComponent subHeader={'버전 정보'} subDesc={''} />
+        <LogoutComponent subHeader={"암호 설정"} subDesc={""} />
+        <LogoutComponent subHeader={"버전 정보"} subDesc={""} />
         <View style={styles.border}></View>
         <Text
           style={{
-            textAlign: 'center',
+            textAlign: "center",
             fontSize: 15,
-            fontWeight: '600',
+            fontWeight: "600",
             marginVertical: 30,
           }}>
           회원탈퇴
@@ -76,44 +76,44 @@ const styles = StyleSheet.create({
   userInfo: {
     height: 100,
     marginTop: 20,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
   },
   userNick: {
     fontSize: 25,
-    fontWeight: '600',
+    fontWeight: "600",
   },
   userId: {
     fontSize: 15,
     marginTop: 10,
   },
   container: {
-    backgroundColor: 'white',
+    backgroundColor: "white",
   },
   header: {
-    backgroundColor: 'white',
+    backgroundColor: "white",
     height: 90,
     borderBottomWidth: 1,
-    borderBottomColor: 'lightgrey',
+    borderBottomColor: "lightgrey",
   },
   headerText: {
     paddingTop: 60,
-    textAlign: 'center',
+    textAlign: "center",
     fontSize: 16,
-    fontWeight: '600',
+    fontWeight: "600",
   },
 
   mainContainer: {
-    backgroundColor: 'white',
+    backgroundColor: "white",
   },
   subHeader: {
     fontSize: 19,
-    fontWeight: '600',
+    fontWeight: "600",
     padding: 30,
   },
   border: {
     height: 1,
-    backgroundColor: 'lightgrey',
+    backgroundColor: "lightgrey",
     marginLeft: 40,
   },
   bottomBlock: {
@@ -121,16 +121,16 @@ const styles = StyleSheet.create({
   },
   lououtBtn: {
     borderWidth: 1,
-    borderColor: '#3AB27B',
+    borderColor: "#3AB27B",
     width: 100,
     height: 35,
-    alignItems: 'center',
-    justifyContent: 'center',
+    alignItems: "center",
+    justifyContent: "center",
     borderRadius: 100,
   },
   lououtText: {
     fontSize: 15,
-    color: '#3AB27B',
-    fontWeight: '700',
+    color: "#3AB27B",
+    fontWeight: "700",
   },
 });

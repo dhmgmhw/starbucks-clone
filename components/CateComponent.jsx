@@ -10,18 +10,23 @@ import { Col, Grid } from "react-native-easy-grid";
 
 import CateDetailPage from "../pages/CateDetailPage";
 
+import ImageBlurLoading from "react-native-image-blur-loading";
+
 const diviceWidth = Dimensions.get("window").width;
 
 export default function CateComponent({ navigation, category }) {
   return (
     <TouchableOpacity
       onPress={() => {
+        // console.log(category.name);
         // console.log(category._id);
-        navigation.navigate("CateDetailPage", category._id);
+
+        navigation.navigate("CateDetailPage", category);
       }}>
       <Grid style={styles.cate}>
         <Col size={1}>
-          <Image
+          <ImageBlurLoading
+            withIndicator
             style={styles.cardImage}
             resizeMode="cover"
             source={{ uri: category.image }}

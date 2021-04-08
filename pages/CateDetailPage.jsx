@@ -12,7 +12,7 @@ import data from "../data.json";
 import { getCateDetailData } from "../config/BackData";
 
 export default function CateDetailPage({ navigation, route }) {
-  const id = route.params;
+  const cate = route.params;
 
   const [ready, setReady] = useState(false);
   const [categories, setCategories] = useState(data.result);
@@ -21,11 +21,11 @@ export default function CateDetailPage({ navigation, route }) {
     setTimeout(() => {
       download();
       setReady(true);
-    }, 1000);
+    });
   }, []);
 
   const download = async () => {
-    const result = await getCateDetailData(id);
+    const result = await getCateDetailData(cate._id);
     // console.log(result);
     setCategories(result);
   };
@@ -33,7 +33,7 @@ export default function CateDetailPage({ navigation, route }) {
   return ready ? (
     <Container>
       {/* "콜드브루" 칸에 알맞는 name값 가져오기 - 어떻게?? */}
-      <HeaderComponent headerTitle="콜드브루" style={styles.header} />
+      <HeaderComponent headerTitle={cate.name} style={styles.header} />
       <Ionicons
         style={styles.headerIcons1}
         name={"search-outline"}

@@ -11,12 +11,10 @@ import { Col, Grid } from "react-native-easy-grid";
 const diviceWidth = Dimensions.get("window").width;
 
 export default function CateDetailComponent({ navigation, category }) {
-  // console.log(category._id);
-
   return (
     <TouchableOpacity
       onPress={() => {
-        navigation.navigate("DetailPage", category.name);
+        navigation.navigate("DetailPage", category);
       }}>
       <Grid style={styles.cate}>
         <Col size={1}>
