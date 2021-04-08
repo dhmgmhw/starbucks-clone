@@ -1,99 +1,51 @@
 {
     "result": [
         {
-            "_id": "606aade5d87d8c60715b33ef",
-            "name": "New",
+            "_id": "",
+            "name": "",
             "eng_name": " ",
-            "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/02/[9200000003273]_20210217102625028.jpg"
-        },
-        {
-            "_id": "606aade5d87d8c60715b33f0",
-            "name": "추천",
-            "eng_name": "Recommend",
-            "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2019/04/[9200000002081]_20190409153909859.jpg"
-        },
-        {
-            "_id": "606aade5d87d8c60715b33f1",
-            "name": "콜드 브루",
-            "eng_name": "Cold Brew",
-            "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2019/09/[9200000002487]_20190919181354845.jpg"
-        },
-        {
-            "_id": "606aade5d87d8c60715b33f2",
-            "name": "에스프레소",
-            "eng_name": "Espresso",
-            "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/03/[9200000003427]_20210324165929869.jpg"
-        },
-        {
-            "_id": "606aade5d87d8c60715b33f3",
-            "name": "프라푸치노",
-            "eng_name": "Frappuccino",
-            "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/03/[9200000003428]_20210324170025045.jpg"
-        },
-        {
-            "_id": "606aade5d87d8c60715b33f4",
-            "name": "블렌디드",
-            "eng_name": "Blended",
-            "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/03/[9200000003429]_20210324170119220.jpg"
-        },
-        {
-            "_id": "606aade5d87d8c60715b33f5",
-            "name": "스타벅스 피지오",
-            "eng_name": "Starvbucks Fizzio",
-            "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2016/09/[107025]_20160905095924513.jpg"
-        },
-        {
-            "_id": "606aade5d87d8c60715b33f6",
-            "name": "티바나",
-            "eng_name": "Teavana",
-            "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/03/[9200000003511]_20210322093158512.jpg"
-        },
-        {
-            "_id": "606aade5d87d8c60715b33f7",
-            "name": "기타",
-            "eng_name": "Others",
-            "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2021/03/[9200000003430]_20210324170218398.jpg"
+            "image": "https://images-na.ssl-images-amazon.com/images/I/51UW1849rJL._AC_SX679_.jpg"
         }
     ],
     "cake": [
         {
-            "price": "23,900원",
+            "price": "23900",
             "name": "피칸 브라우니",
             "eng_name": "Pecan Brownie",
             "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2019/06/[9300000002173]_20190612150600937.jpg"
         },
         {
-            "price": "25,000원",
+            "price": "25000",
             "name": "크레이프 에멘탈 치즈 케이크",
             "eng_name": "Crepe Emmental Cheese Cake",
             "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2019/04/[9300000002064]_20190412135005999.jpg"
         },
         {
-            "price": "25,000원",
+            "price": "25000",
             "name": "세븐 레이어 가나슈 케이크",
             "eng_name": "Seven Layer Ganache Cake",
             "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2019/04/[9300000002065]_20190412135121406.jpg"
         },
         {
-            "price": "38,000원",
+            "price": "38000",
             "name": "청담스타 얼 그레이 밀크 케이크",
             "eng_name": "Cheongdam Star Earl Grey Milk Cake",
             "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2018/04/[9300000001521]_20180419160443788.jpg"
         },
         {
-            "price": "38,000원",
+            "price": "38000",
             "name": "청담스타 오 허니 케이크",
             "eng_name": "Cheongdam Star Oh Honey Cake",
             "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2017/04/[9300000000882]_20170425213905124.jpg"
         },
         {
-            "price": "39,000원",
+            "price": "39000",
             "name": "헤븐리 티라미수",
             "eng_name": "Heavenly Tiramisu",
             "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2017/04/[9300000000878]_20170425213107826.jpg"
         },
         {
-            "price": "41,000원",
+            "price": "41000",
             "name": "블루베리 쿠키 치즈 케이크",
             "eng_name": "Blueberry Cookie Cheese Cake",
             "image": "https://image.istarbucks.co.kr/upload/store/skuimg/2018/04/[9300000000913]_20180430162431754.jpg"

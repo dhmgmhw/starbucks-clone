@@ -3,30 +3,29 @@ import {
   StyleSheet,
   View,
   Text,
-  Card,
   TouchableOpacity,
   Image,
   ImageBackground,
-  ScrollViewComponent,
   ScrollView,
   Dimensions,
 } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { Container } from 'native-base';
+import { ProgressBar } from 'react-native-paper';
+import { Col, Grid } from 'react-native-easy-grid';
 
-import { FontAwesome } from '@expo/vector-icons';
 import { SimpleLineIcons } from '@expo/vector-icons';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { EvilIcons } from '@expo/vector-icons';
-import { Fontisto } from '@expo/vector-icons';
 
 import homead from '../assets/homead.png';
 import ad2 from '../assets/ad2.jpg';
 import ad3 from '../assets/ad3.jpg';
 import ad4 from '../assets/ad4.jpg';
 
-import axios from 'axios';
 import data from '../data.json';
+import { getUserInfo } from '../config/BackData';
+
 const diviceWidth = Dimensions.get('window').width;
 
 import NewMenu from '../components/NewMenu';
@@ -35,13 +34,22 @@ import { getNewMenuData } from '../config/BackData';
 
 export default function HomePage({ navigation }) {
   const [categories, setCategories] = useState(data.result);
+  const [nickName, setNickName] = useState('');
+  const [star, setStar] = useState('');
 
+  const starLeft = 12 - star;
   useEffect(() => {
+    navigation.addListener('beforeRemove', (e) => {
+      e.preventDefault();
+    });
     download();
   }, []);
 
   const download = async () => {
     const result = await getNewMenuData();
+    const response = await getUserInfo();
+    setNickName(response.nickName);
+    setStar(response.star);
 
     setCategories(result);
   };
@@ -51,28 +59,36 @@ export default function HomePage({ navigation }) {
       <ScrollView>
         <StatusBar style='black' />
 
-        {/* Animated Header안에 들어갈 랜덤으로 바뀌는 인삿말 */}
-        <View style={styles.TopMessage}>
-          <Text style={styles.toptext}>
-            고객님~{'\n'}반갑습니다!
-            <Fontisto name='coffeescript' size={24} color='green' />
-            {/* <FontAwesome name="coffee" size={24} color="green" /> */}
-          </Text>
-        </View>
-
         {/* 추후에 AnimatedHeader안에 들어갈 카드등록 기능을 가진 cardcomponent */}
-        <View style={styles.makecard}>
-          <Text style={styles.cardtext}>
-            스타벅스 카드를 등록하시고{'\n'}
-            <Text style={{ color: 'green', fontWeight: 'bold' }}>
-              스타벅스 리워드
-            </Text>
-            회원의{'\n'}다양한 혜택을 누리세요!
+        <ImageBackground
+          source={require('../assets/back.png')}
+          style={styles.makecard}>
+          <Text style={styles.toptext}>
+            {nickName}님🌸{'\n'}체리블라썸이 찾아왔어요!
           </Text>
-          <TouchableOpacity style={styles.cardbutton}>
-            <Text style={{ color: 'white', fontSize: 18 }}>카드등록</Text>
-          </TouchableOpacity>
-        </View>
+          <Grid style={{ marginTop: 20 }}>
+            <Col style={{ paddingRight: 10 }} size={4}>
+              <Text style={styles.starLeftReward}>
+                {starLeft} ★ until next Reward
+              </Text>
+              <ProgressBar
+                style={styles.ProgressBar}
+                progress={{ star } * 0.083}
+                color={'#B99C5C'}
+              />
+            </Col>
+            <Col
+              style={{
+                flexDirection: 'row',
+                alignItems: 'baseline',
+                paddingRight: 30,
+              }}
+              size={1}>
+              <Text style={{ fontSize: 35, fontWeight: '500' }}>{star}</Text>
+              <Text style={styles.starLeftText}> / 12★</Text>
+            </Col>
+          </Grid>
+        </ImageBackground>
 
         {/* 최후에 헤더로 고정될 버튼 모음 */}
         <View style={styles.lastheaderbutton}>
@@ -128,6 +144,7 @@ export default function HomePage({ navigation }) {
             새로 나온 메뉴
           </Text>
         </View>
+
         {/* ###################가로스크롤 NewMenu ###################*/}
         <ScrollView
           horizontal={true}
@@ -198,7 +215,6 @@ export default function HomePage({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    paddingTop: 100,
     backgroundColor: '#fff',
     shadowColor: 'black',
     shadowOffset: {
@@ -208,53 +224,42 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.5,
     shadowRadius: 5,
   },
-  TopMessage: {
-    paddingTop: 60,
-    paddingLeft: 25,
-    paddingBottom: 30,
-  },
   toptext: {
-    fontSize: 30,
-    fontWeight: '700',
+    fontSize: 28,
+    fontWeight: '600',
+    paddingTop: 80,
+    lineHeight: 40,
   },
   makecard: {
     padding: 25,
     paddingTop: 30,
     paddingBottom: 30,
-    margin: 20,
     marginBottom: 5,
     marginTop: 5,
     borderBottomColor: 'black',
-    width: '90%',
-    height: 200,
-    backgroundColor: 'white',
-    shadowColor: '#000',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 3.84,
-    elevation: 5,
+    width: diviceWidth,
+    height: 280,
+    alignSelf: 'center',
   },
-
-  cardtext: {
-    fontSize: 15,
-    paddingBottom: 30,
-    lineHeight: 22,
+  starLeftReward: {
+    fontSize: 14,
+    fontWeight: '600',
+    color: '#B99C5C',
   },
-  cardbutton: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: 'green',
-    width: 100,
-    borderRadius: 40,
+  starLeftText: {
+    fontSize: 20,
+    fontWeight: '500',
+    color: '#B99C5C',
+  },
+  ProgressBar: {
+    height: 8,
+    borderRadius: 100,
+    marginTop: 10,
   },
   lastheaderbutton: {
     flex: 1,
     flexDirection: 'row',
-    marginTop: 20,
+    marginTop: 5,
     marginLeft: 30,
     marginBottom: 40,
   },

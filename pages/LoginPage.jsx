@@ -40,7 +40,7 @@ export default function LoginPage({ navigation }) {
         }
       });
       setReady(true);
-    }, 1000);
+    });
   }, []);
 
   const doLogin = () => {

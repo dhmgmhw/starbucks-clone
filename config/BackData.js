@@ -15,7 +15,6 @@ export async function getCateData() {
     }
 }
 
-
 //오더페이지>카테코리>세부카테고리 - 형인
 export async function getCateDetailData(id) {
     try {
@@ -26,7 +25,7 @@ export async function getCateDetailData(id) {
         const response = await axios({
             method: 'get',
             url: host + '/menu/drink/categories/' + id,
-          });
+        });
 
         // console.log(response.data.result)
         return response.data.result
@@ -57,11 +56,8 @@ export async function getMenuDetailData(id) {
 // 홈페이지-형인
 export async function getNewMenuData() {
     try {
-
         const result = await axios.get(host + '/menu/new_menu');
-
         return result.data.result
-
     } catch (err) {
         Alert.alert('잘못된 정보 :(');
     }
@@ -78,22 +74,47 @@ export async function register(id, password, nickName) {
         Alert.alert('환영합니다, ' + nickName + ' :)');
     } catch (err) {
         console.log(err);
-        Alert.alert('아이디를 확인해주세요');
+        Alert.alert('아이디를 확인해주세요 :)');
     }
 }
 
 export async function login(id, password, navigation) {
-    await axios.post(host + '/user/login', {
-        "id": id,
-        "password": password
-    })
-        .then((response) => {
-            console.log(response.data.result);
-            navigation.push('TabNavigator');
-        }, (error) => {
-            console.log(error);
-            Alert.alert('아이디를 확인해주세요');
+    try {
+        const response = await axios({
+            method: 'post',
+            url: host + '/user/login',
+            data: {
+                "id": id,
+                "password": password
+            },
         });
+
+        const token = response.data.result.user.token;
+        await AsyncStorage.setItem('session', token);
+
+        Alert.alert('로그인 성공!');
+        navigation.push('TabNavigator');
+    } catch (err) {
+        Alert.alert('로그인에 문제가 있는 것 같아요 :(');
+    }
+}
+
+// 유저인포-형원님
+export async function getUserInfo() {
+    try {
+        const token = await AsyncStorage.getItem('session');
+        const response = await axios({
+            method: 'get',
+            url: host + '/user/user_info',
+            headers: {
+                authorization: 'Bearer ' + token,
+            },
+        });
+        console.log(response.data.result)
+        return response.data.result
+    } catch (err) {
+        Alert.alert("당신이 누군지 모르겠어요 :(");
+    }
 }
 
 export async function logout(navigation) {
@@ -101,8 +122,9 @@ export async function logout(navigation) {
         console.log('로그아웃을 시도합니다..');
         console.log(AsyncStorage)
         AsyncStorage.clear()
+        Alert.alert('로그인페이지로 돌아갑니다.');
         navigation.push('LoginPage');
     } catch (err) {
-        Alert.alert('너는 벗어날 수 없어 ', err.message);
+        Alert.alert('너는 벗어날 수 없어');
     }
 }

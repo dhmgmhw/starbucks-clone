@@ -8,8 +8,6 @@ import {
 } from "react-native";
 import { Col, Grid } from "react-native-easy-grid";
 
-import CateDetailPage from "../pages/CateDetailPage";
-
 import ImageBlurLoading from "react-native-image-blur-loading";
 
 const diviceWidth = Dimensions.get("window").width;
@@ -20,7 +18,6 @@ export default function CateComponent({ navigation, category }) {
       onPress={() => {
         // console.log(category.name);
         // console.log(category._id);
-
         navigation.navigate("CateDetailPage", category);
       }}>
       <Grid style={styles.cate}>

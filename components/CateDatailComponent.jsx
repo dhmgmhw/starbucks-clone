@@ -5,6 +5,7 @@ import {
   Dimensions,
   TouchableOpacity,
   Image,
+  LogBox,
 } from "react-native";
 import { Col, Grid } from "react-native-easy-grid";
 
