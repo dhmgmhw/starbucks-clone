@@ -121,15 +121,12 @@ export default function HomePage({ navigation }) {
             <EvilIcons name='bell' size={28} color='black' />
           </TouchableOpacity>
         </View>
-
-        {/* 첫번째 광고, 추후 event페이지로 navigate */}
         <TouchableOpacity style={styles.Addbox}>
           <Image
             source={homead}
             style={{ height: '100%', width: '100%', resizeMode: 'cover' }}
           />
         </TouchableOpacity>
-
         <View
           style={{
             flex: 1,
@@ -144,8 +141,6 @@ export default function HomePage({ navigation }) {
             새로 나온 메뉴
           </Text>
         </View>
-
-        {/* ###################가로스크롤 NewMenu ###################*/}
         <ScrollView
           horizontal={true}
           style={styles.newMenu}
@@ -154,41 +149,6 @@ export default function HomePage({ navigation }) {
             return <NewMenu category={category} key={i} />;
           })}
         </ScrollView>
-
-        {/* <View
-          style={{
-            flex: 1,
-            flexDirection: "row",
-          }}>
-          <Text
-            style={{
-              fontSize: 23,
-              fontWeight: "bold",
-              padding: 20,
-            }}>
-            이 시간대 인기 메뉴
-          </Text>
-          <Text
-            style={{
-              fontSize: 13,
-              color: "grey",
-              margin: 20,
-              marginLeft: 30,
-            }}>
-            주중 오후 7시 기준
-          </Text>
-        </View>
-        ###################가로스크롤 NewMenu ###################
-        <ScrollView
-          horizontal={true}
-          style={styles.newMenu}
-          showsHorizontalScrollIndicator={false}>
-          {categories.map((category, i) => {
-            return <NewMenu category={category} key={i} />;
-          })}
-        </ScrollView> */}
-
-        {/* 광고들, 마찬가치로 event페이지로 navigate */}
         <TouchableOpacity style={styles.Add2box}>
           <Image
             source={ad2}

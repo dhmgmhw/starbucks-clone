@@ -39,7 +39,7 @@ export default function DetailPage({ navigation, route }) {
   const [num, setNum] = useState(1);
 
   const doOrder = () => {
-    placeOrder(manu, size, cup, num, navigation);
+    placeOrder(manu, size, cup, num);
     setModalOpen(false);
     Alert.alert('주문이 완료되었습니다!');
   };
