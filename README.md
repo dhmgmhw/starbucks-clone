@@ -1,4 +1,4 @@
-# 스타벅스 어플리케이션 클론 - CLIENT
+# Starbucks App Clone Coding - CLIENT
 
 <img src="https://publy.imgix.net/images/2020/07/20/1595228250_X8O98ihhZ5YIuQ2aY7apva98rMizs3MxcONASYne.png?fm=pjpg"  width="500" height="250">
 스타벅스의 리뉴얼된 어플리케이션을 클론코딩 하였습니다.
