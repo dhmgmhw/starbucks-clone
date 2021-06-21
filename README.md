@@ -23,7 +23,7 @@ https://www.youtube.com/watch?v=4sEtqqU6d8U
 
 ## ⚒️개발 스펙
 - React Native
-- JavaScritp
+- JavaScript
 
 ## 🌱성장한 점
 1. BACKEND와의 작업을 통한 협업 경험
